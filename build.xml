@@ -2,15 +2,164 @@
 
 <project name="MathLie" default="zip" basedir=".">
 
-<target name="zip">
-	<delete file="${basedir}/dist/MathLie.zip"/>
-	<echo>## CREATING ZIP FILE ##</echo>
-	<!-- Zip everything in a distributable file. -->
-	<zip 
-		destfile="${basedir}/dist/MathLie.zip" 
-		includes="LICENSE,README.md,MathLie/LiE/README.md,MathLie/Kernel/init.m,MathLie/MathLie.m" 
-		basedir="." update="no"
-	/>
-</target>
+	<property name="egrepexec" value="/usr/bin/egrep"/>
+
+	<target name="zip" depends="changelog">
+		<delete file="${basedir}/dist/MathLie.zip"/>
+		<echo>## CREATING ZIP FILE ##</echo>
+		<!-- Zip everything in a distributable file. -->
+		<zip 
+			destfile="${basedir}/dist/MathLie.${git.newversion}.zip" 
+			includes="LICENSE,README.md,MathLie/LiE/README.md,MathLie/Kernel/init.m,MathLie/MathLie.m" 
+			basedir="." update="no"
+		/>
+	</target>
+	
+
+	<!-- Macro for getting the date of a Git tag. -->
+	<macrodef name="get-git-date">
+		<attribute name="tag" />
+		<attribute name="num" />
+		<sequential>
+			<exec dir="." executable="git" failonerror="true" outputproperty="git.date.@{num}">
+				<arg line="log @{tag} --simplify-by-decoration --pretty=format:%ad --date=short --reverse -1" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<!-- Macro for getting the Git commit logs of one tag. -->
+	<macrodef name="get-git-log">
+		<attribute name="range" />
+		<attribute name="numlog" />
+		<sequential>
+			<exec dir="." executable="git" failonerror="true" outputproperty="git.fulllog.@{numlog}">
+				<arg line="log --pretty=format:%s @{range} MathLie" />
+			</exec>
+			<echo file="log.temp">${git.fulllog.@{numlog}}</echo>
+			<exec dir="." executable="${egrepexec}" outputproperty="git.log.@{numlog}">
+				<arg line="-v -i 'version number|merge|merging' log.temp" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<target name="changelog">
+		
+		<echo>## UPDATING CHANGELOG ##</echo>
+
+		<!-- Get the date. -->
+		<tstamp>
+			<format property="TODAY_XACT" pattern="yyyy-M-d" />
+		</tstamp>
+		
+		<!-- Get a list of tags from Git. -->
+		<exec dir="." executable="git" failonerror="true" outputproperty="git.tags">
+			<arg line="for-each-ref --sort='*authordate' --format='%(refname:short)' refs/tags" />
+		</exec>
+		<echo>Git tags:</echo>
+		<echo>${git.tags}</echo>
+		
+		<!-- Get the current tag from Git. If the current commit doesn't have a tag, it fails. -->
+		<exec dir="." executable="git" failonerror="false" outputproperty="git.currenttag">
+			<arg line="describe --exact-match HEAD" />
+		</exec>
+		<echo>Current tag: ${git.currenttag}</echo>
+		
+		<!-- Get the last tag. -->
+		<exec dir="." executable="git" failonerror="false" outputproperty="git.lasttag">
+			<arg line="describe --abbrev=0" />
+		</exec>
+		<echo>Last tag: ${git.lasttag}</echo>
+		
+		<!-- Get the number of commits since the last tag. -->
+		<exec dir="." executable="git" failonerror="false" outputproperty="git.commitssincetag">
+			<arg line="rev-list ${git.lasttag}..HEAD --count" />
+		</exec>
+		<echo>Commits since last tag: ${git.commitssincetag}</echo>
+		
+		<!-- Parse the Git tags into a nicely formatted log with Javascript. -->
+		<script language="javascript">
+			<![CDATA[
+			
+			/* Create tasks. */
+			var echo 		= project.createTask("echo");
+			var getgitdate 	= project.createTask("get-git-date");
+			var getgitlog  	= project.createTask("get-git-log");
+			
+			/* Get the list of tags, and split them into an array. */ 
+			tags = project.getProperty("git.tags").replace("\r", "").split("\n");
+			
+			/* Determine if the current commit sits on the last tag. 
+			   If so, use the name of the last tag as the version number.
+			   If not, use the name of the last tag plus the number of commits away from it. */
+			var lastversion = tags[tags.length-1].replace("v","");
+			if(tags[tags.length-1] == String(project.getProperty("git.currenttag")))
+			{
+				getgitdate.setDynamicAttribute("tag",tags[tags.length - 1]);
+			    getgitdate.setDynamicAttribute("num",tags.length - 1);
+				getgitdate.execute();
+				var newdate 	= (project.getProperty("git.date." + (tags.length - 1))).replace("-0","-").split("-").join(", ");
+				var newversion 	= lastversion;
+			}
+			else
+			{
+				var newversion 	= lastversion + "." + String(project.getProperty("git.commitssincetag"));
+			    var newdate 	= project.getProperty("TODAY_XACT").split("-").join(", ");
+				tags = (tags.join("\n") + "\nHEAD").split("\n");
+			}
+			project.setProperty("git.newversion",newversion);
+			project.setProperty("quoted.version","\"" + newversion + "\"");
+			
+			/* Also set a string that matches the formatting in the init.m file. */
+			project.setProperty(
+				"xact.version",
+				"{\"" + newversion + "\", {" + newdate + "}}"
+			);			
+
+			/* Create the formatted log by looping over the tags. */
+			var output = 'MathLie changelog\n=================\n\n';
+			var versionheader = '';
+			for (var i = tags.length - 1; i > -1; i--) {
+			    	
+			    versionheader = "v" + tags[i].replace("HEAD", newversion) + ", ";
+			    
+				/* Get the date of the tag. */
+				getgitdate.setDynamicAttribute("tag",tags[i]);
+			    getgitdate.setDynamicAttribute("num",i);
+				getgitdate.execute();
+				versionheader += project.getProperty("git.date." + i);
+				
+				output += versionheader + "\n";
+				output += new Array(versionheader.length + 1).join( "-" ) + "\n\n";
+			
+				/* Get the log of this particular tag. */		
+			    var range = '';
+			    if(i > 0)
+			    {
+			    	range += tags[i-1] + "..";
+			    }
+			    range += tags[i];
+			
+			    getgitlog.setDynamicAttribute("range", range);
+				getgitlog.setDynamicAttribute("numlog",i);
+			    getgitlog.execute();
+			
+			    output += "  * " + project.getProperty("git.log." + i).replace("\n", "\n  * ")  + "\n\n";
+			
+				echo.setMessage("Formatted changelog for " + tags[i]);
+				echo.perform();
+			}
+			
+			/* Send the formatted log back to Ant. */
+			project.setProperty("git.log", output);
+			]]>
+		</script>
+		
+		<!-- Delete the temporary log file. -->
+		<delete file="log.temp" />
+		
+		<!-- Write the changelog to a file. -->
+		<echo file="${basedir}/CHANGELOG">${git.log}</echo>
+
+	</target>
 
 </project>

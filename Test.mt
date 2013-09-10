@@ -1,11 +1,21 @@
 (* Mathematica Test File *)
 
+Print[System`$Version];
+
 Test[
 	MathLie`Private`CheckLieExecutable[]
 	,
 	True
 	,
 	TestID->"Test-20130103-U3S6O1"
+]
+
+Test[
+	LieQuery["A2"]
+	,
+	"\"A2\""
+	,
+	TestID->"Test-20130910-J7A3E3"
 ]
 
 Test[
@@ -22,14 +32,6 @@ Test[
 	True
 	,
 	TestID->"Test-20130910-U4B0R8"
-]
-
-Test[
-	LieQuery["A2"]
-	,
-	"\"A2\""
-	,
-	TestID->"Test-20130910-J7A3E3"
 ]
 
 Test[

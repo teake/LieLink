@@ -4,8 +4,8 @@
 
 Paclet[
     Name -> "MathLie",
-    Version -> "0.1.0",
-    MathematicaVersion -> "9+",
+    Version -> "0.1.1",
+    MathematicaVersion -> "7+",
     Description -> "A Mathematica interface to LiE",
     Creator -> "Teake Nutma",
     Extensions -> 

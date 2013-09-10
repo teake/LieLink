@@ -68,8 +68,13 @@ $LieDirectory =
 $LieExecutable = 
 	"Liegap.exe";
 
-$LieInFile 	= CreateTemporary[];
-$LieOutFile = CreateTemporary[];
+tempMathLieDir = FileNameJoin @ { $TemporaryDirectory, "MathLieInOutFiles" };
+If[ !DirectoryQ @ tempMathLieDir,
+	CreateDirectory @ tempMathLieDir;
+];
+
+$LieInFile 	= FileNameJoin @ { tempMathLieDir, "MathLieInFile" }
+$LieOutFile = FileNameJoin @ { tempMathLieDir, "MathLieOutFile" }
 
 
 CheckLieExecutable[] := 

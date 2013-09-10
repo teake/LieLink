@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MathLie" default="zip" basedir=".">
+
+<target name="zip">
+	<delete file="${basedir}/dist/MathLie.zip"/>
+	<echo>## CREATING ZIP FILE ##</echo>
+	<!-- Zip everything in a distributable file. -->
+	<zip 
+		destfile="${basedir}/dist/MathLie.zip" 
+		includes="LICENSE,README.md,MathLie/LiE/README.md,MathLie/Kernel/init.m,MathLie/MathLie.m" 
+		basedir="." update="no"
+	/>
+</target>
+
+</project>

@@ -1,7 +1,7 @@
 MathLie
 =======
 
-A Mathematica interface for LiE. It currently only works on OS X (and possibly Linux) and Mathematica 9.
+A Mathematica interface for LiE. MathLie needs Mathematica version 7 or higher.
 
 Installation
 ------------

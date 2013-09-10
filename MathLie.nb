@@ -1,0 +1,260 @@
+Notebook[{
+Cell[BoxData[
+ RowBox[{"<<", "MathLie`"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["SetDefaultAlgebra", "Subsubsection"],
+
+Cell[TextData[{
+ "The default algebra can be set with ",
+ StyleBox["SetDefaultAlgebra", "Input"],
+ ":"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDefaultAlgebra", "[", "\"\<A2\>\"", "]"}]], "Input"],
+
+Cell[BoxData["\<\"A2\"\>"], "Output"]
+}, Open  ]],
+
+Cell[TextData[{
+ "This is the analogue of LiE\[CloseCurlyQuote]s ",
+ StyleBox["setdefault",
+  FontSlant->"Italic"],
+ "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDefaultAlgebra", "[", "]"}]], "Input"],
+
+Cell[BoxData["\<\"A2\"\>"], "Output"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Defaults can be removed by setting it to ",
+ StyleBox["None", "Input"],
+ ":"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDefaultAlgebra", "[", "None", "]"}]], "Input"],
+
+Cell[BoxData["None"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["LieFunction", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "LieFunction"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"LieFunction[\\\"func\\\",args] calls the LiE function func \
+with the given Mathematica arguments.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3587801662-7555822"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieFunction", "[", 
+  RowBox[{"\"\<dim\>\"", ",", "\"\<E8\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["248"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["LookupLieFunction", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "LookupLieFunction"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"LookupLieFunction[\\\"func\\\"] gives the Mathematica name of \
+the LiE  function func. It returns $Failed is the LiE function doesn't exist \
+or hasn't been translated to a Mathematica name yet.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3587802493-7555822"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LookupLieFunction", "[", "\"\<dim\>\"", "]"}]], "Input"],
+
+Cell[BoxData["Dim"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LookupLieFunction", "[", "\"\<doesn't exist\>\"", "]"}]], "Input"],
+
+Cell[BoxData["$Failed"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LookupLieFunction", "[", "\"\<center\>\"", "]"}]], "Input"],
+
+Cell[BoxData["$Failed"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Dim", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Dim"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"Dim is the equivalent of the LiE function \\\"dim\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3587802410-7555822"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dim", "[", "\"\<A2\>\"", "]"}]], "Input"],
+
+Cell[BoxData["8"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dim", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "1"}], "}"}], "]"}]], "Input"],
+
+Cell[BoxData["8"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieTensor", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "0", "\<\",\"\>", "0", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}], "+", 
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "0", "\<\",\"\>", "3", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}], "+", 
+  RowBox[{"2", " ", 
+   RowBox[{
+    StyleBox["{",
+     FontColor->RGBColor[1, 0, 0]], "1", "\<\",\"\>", "1", 
+    StyleBox["}",
+     FontColor->RGBColor[1, 0, 0]]}]}], "+", 
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "2", "\<\",\"\>", "2", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}], "+", 
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "3", "\<\",\"\>", "0", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dim", "/@", "%"}]], "Input"],
+
+Cell[BoxData["64"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["SymTensor", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "SymTensor"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"SymTensor is the equivalent of the LiE function \\\"sym_tensor\
+\\\".\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3587802415-7555822"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SymTensor", "[", 
+  RowBox[{"2", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "0", "\<\",\"\>", "0", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}], "+", 
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "1", "\<\",\"\>", "1", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}], "+", 
+  RowBox[{
+   StyleBox["{",
+    FontColor->RGBColor[1, 0, 0]], "2", "\<\",\"\>", "2", 
+   StyleBox["}",
+    FontColor->RGBColor[1, 0, 0]]}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dim", "/@", "%"}]], "Input"],
+
+Cell[BoxData["36"], "Output"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 756},
+WindowMargins->{{Automatic, 227}, {Automatic, 67}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+

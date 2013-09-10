@@ -118,6 +118,11 @@ If[ !DirectoryQ @ tempMathLieDir,
 $LieInFile 	= FileNameJoin @ { tempMathLieDir, "MathLieInFile" }
 $LieOutFile = FileNameJoin @ { tempMathLieDir, "MathLieOutFile" }
 
+$DevNull = 
+	If[ $OperatingSystem === "Windows",
+		"NUL",
+		"/dev/null"
+	]
 
 (*************************************
  *                                   *
@@ -178,7 +183,7 @@ LieQuery[query_String] :=
 		(* Run LiE. *)
 		returncode = Run @ StringJoin[
 			"cd " <> $LieDirectory <> ";",
-			"./" <> $LieExecutable <> " > /dev/null < " <> $LieInFile
+			"./" <> $LieExecutable <> " > " <> $DevNull <> " < " <> $LieInFile
 		];
 		(* Check the return code. *)
 		If[ returncode =!= 0,

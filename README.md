@@ -8,8 +8,9 @@ Installation
 
 ### Obtaining the package ###
 
-Download the latest release (not available yet) and unzip it, and the MathLie directory to the 
-Mathematica applications directory. The location of this directory can be found by typing the command
+Download the latest release https://github.com/teake/MathLie/releases, unzip it, and move the MathLie
+directory to the Mathematica applications directory. The location of this directory can be found by 
+typing the command
 
     FileNameJoin @ {$UserBaseDirectory, "Applications"}
 

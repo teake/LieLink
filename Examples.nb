@@ -1,6 +1,6 @@
 Notebook[{
 Cell[BoxData[
- RowBox[{"<<", "MathLie`"}]], "Input"],
+ RowBox[{"<<", "LieLink`"}]], "Input"],
 
 Cell[CellGroupData[{
 

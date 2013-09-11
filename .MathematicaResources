@@ -1,8 +1,11 @@
 Resources[
     Version[1],
-    ExecutionBuildCommand["<<MathLie`"],
+    Sources[
+        Directory["~"]
+    ],
+    ExecutionBuildCommand["<<LieLink`"],
     Paclet[
-        PacletFolder["MathLie"],
+        PacletFolder["LieLink"],
         FunctionPaclet[False]
     ]
 ]

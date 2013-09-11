@@ -1,8 +1,8 @@
 (* Mathematica Package *)
 
-(* MathLie: a Mathematica interface for LiE *)
+(* LieLink: a Mathematica interface for LiE *)
 
-(* https://github.com/teake/MathLie *)
+(* https://github.com/teake/LieLink *)
 
 (*************************************
  *                                   *
@@ -12,7 +12,7 @@
  
 (*
 
-	MathLie roughly works as follows:
+	LieLink roughly works as follows:
 	
 	1. Convert input query to LiE syntax.
 	2. Write out a temporary file with the converted query to the filesystem.
@@ -30,7 +30,7 @@
 
 *)
 
-BeginPackage["MathLie`"]
+BeginPackage["LieLink`"]
 
 
 (*************************************
@@ -104,19 +104,19 @@ Begin["`Private`"]
 
 $LieDirectory = 
 	FileNameJoin @ Join [ 
-		Drop[FileNameSplit@FindFile["MathLie`"], -2],
+		Drop[FileNameSplit@FindFile["LieLink`"], -2],
 		{ "LiE" } 
 	];
 $LieExecutable = 
 	"Liegap.exe";
 
-tempMathLieDir = FileNameJoin @ { $TemporaryDirectory, "MathLieInOutFiles" };
-If[ !DirectoryQ @ tempMathLieDir,
-	CreateDirectory @ tempMathLieDir;
+tempLieLinkDir = FileNameJoin @ { $TemporaryDirectory, "LieLinkInOutFiles" };
+If[ !DirectoryQ @ tempLieLinkDir,
+	CreateDirectory @ tempLieLinkDir;
 ];
 
-$LieInFile 	= FileNameJoin @ { tempMathLieDir, "MathLieInFile" }
-$LieOutFile = FileNameJoin @ { tempMathLieDir, "MathLieOutFile" }
+$LieInFile 	= FileNameJoin @ { tempLieLinkDir, "LieLinkInFile" }
+$LieOutFile = FileNameJoin @ { tempLieLinkDir, "LieLinkOutFile" }
 
 $DevNull = 
 	If[ $OperatingSystem === "Windows",
@@ -307,7 +307,7 @@ SetDefaultAlgebra[] :=
 SetFunction[Rule[string_String, symbol_String]] :=
 	With[
 		{
-			functionName 	= Symbol["MathLie`" <> symbol],
+			functionName 	= Symbol["LieLink`" <> symbol],
 			lieName 		= string
 		},
 		ClearAll[symbol];
@@ -319,7 +319,7 @@ SetFunction[Rule[string_String, symbol_String]] :=
 LookupLieFunction[string_String] := 
 	If[
 		string =!= (string /. LieFunctionTable),
-		Symbol["MathLie`" <> (string /. LieFunctionTable)],
+		Symbol["LieLink`" <> (string /. LieFunctionTable)],
 		$Failed
 	];
 

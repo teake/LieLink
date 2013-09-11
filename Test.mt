@@ -3,7 +3,7 @@
 Print[System`$Version];
 
 Test[
-	MathLie`Private`CheckLieExecutable[]
+	LieLink`Private`CheckLieExecutable[]
 	,
 	True
 	,
@@ -62,7 +62,7 @@ oldexe 			= $LieExecutable;
 $LieExecutable 	= "wrongfilename";
 
 Test[
-	MathLie`Private`CheckLieExecutable[]
+	LieLink`Private`CheckLieExecutable[]
 	,
 	False
 	,

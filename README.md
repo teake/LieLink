@@ -1,25 +1,25 @@
-MathLie
+LieLink
 =======
 
-A Mathematica interface for LiE. MathLie needs Mathematica version 7 or higher.
+A Mathematica interface for LiE. LieLink needs Mathematica version 7 or higher.
 
 Installation
 ------------
 
 ### Obtaining the package ###
 
-Download the latest release https://github.com/teake/MathLie/releases, unzip it, and move the MathLie
+Download the latest release https://github.com/teake/LieLink/releases, unzip it, and move the LieLink
 directory to the Mathematica applications directory. The location of this directory can be found by 
 typing the command
 
     FileNameJoin @ {$UserBaseDirectory, "Applications"}
 
-into Mathematica. Alternatively, you can checkout this repository and move the MathLie subdirectory to 
+into Mathematica. Alternatively, you can checkout this repository and move the LieLink subdirectory to 
 the same Mathematica applications directory.
 
 ### Compiling LiE ###
 
-MathLie relies on LiE for all the calculations, so it needs a compiled version of it. 
+LieLink relies on LiE for all the calculations, so it needs a compiled version of it. 
 Download the compile-only version of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, unzip it, 
 and compile the GAP version by doing
 
@@ -29,7 +29,7 @@ and compile the GAP version by doing
 from the command line. Note that OS X users will first need to replace the makefile with 
 [this file](http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/Macfile).
 
-After compilation, move the following files to the LiE subdirectory in the MathLie directory:
+After compilation, move the following files to the LiE subdirectory in the LieLink directory:
 
     Liegap.exe
     Lie.exe
@@ -44,9 +44,9 @@ After compilation, move the following files to the LiE subdirectory in the MathL
 Running the package
 -------------------
 
-Once installed, MathLie can be run in Mathematica by typing
+Once installed, LieLink can be run in Mathematica by typing
 
-    <<MathLie`
+    <<LieLink`
     
 Lie commands can be executed with the `LieFunction` command:
 

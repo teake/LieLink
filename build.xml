@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="MathLie" default="zip" basedir=".">
+<project name="LieLink" default="zip" basedir=".">
 
 	<property name="egrepexec" value="/usr/bin/egrep"/>
 
 	<target name="zip" depends="changelog">
-		<delete file="${basedir}/dist/MathLie.zip"/>
+		<delete file="${basedir}/dist/LieLink.${git.newversion}.zip"/>
 		<echo>## CREATING ZIP FILE ##</echo>
 		<!-- Zip everything in a distributable file. -->
 		<zip 
-			destfile="${basedir}/dist/MathLie.${git.newversion}.zip" 
-			includes="LICENSE,README.md,MathLie/LiE/README.md,MathLie/Kernel/init.m,MathLie/MathLie.m" 
+			destfile="${basedir}/dist/LieLink.${git.newversion}.zip" 
+			includes="CHANGELOG,LICENSE,README.md,LieLink/LiE/README.md,LieLink/Kernel/init.m,LieLink/LieLink.m" 
 			basedir="." update="no"
 		/>
 	</target>
@@ -33,11 +33,11 @@
 		<attribute name="numlog" />
 		<sequential>
 			<exec dir="." executable="git" failonerror="true" outputproperty="git.fulllog.@{numlog}">
-				<arg line="log --pretty=format:%s @{range} MathLie" />
+				<arg line="log --pretty=format:%s @{range}" />
 			</exec>
 			<echo file="log.temp">${git.fulllog.@{numlog}}</echo>
 			<exec dir="." executable="${egrepexec}" outputproperty="git.log.@{numlog}">
-				<arg line="-v -i 'version number|merge|merging' log.temp" />
+				<arg line="-v -i 'version number|merge|merging|build|README' log.temp" />
 			</exec>
 		</sequential>
 	</macrodef>
@@ -116,7 +116,7 @@
 			);			
 
 			/* Create the formatted log by looping over the tags. */
-			var output = 'MathLie changelog\n=================\n\n';
+			var output = 'LieLink changelog\n=================\n\n';
 			var versionheader = '';
 			for (var i = tags.length - 1; i > -1; i--) {
 			    	

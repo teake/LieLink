@@ -12,17 +12,17 @@ Cell[BoxData["\<\"============================================================\
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"Package LieLink` version \"\>", 
-   "\[InvisibleSpace]", "\<\"0.2.0\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
+   "\[InvisibleSpace]", "\<\"0.2.0.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"2013", ",", "9", ",", "11"}], "}"}]}],
-  SequenceForm["Package LieLink` version ", "0.2.0", ", ", {2013, 9, 11}],
+    RowBox[{"2013", ",", "9", ",", "12"}], "}"}]}],
+  SequenceForm["Package LieLink` version ", "0.2.0.1", ", ", {2013, 9, 12}],
   Editable->False]], "Print"],
 
 Cell[BoxData["\<\"CopyRight (C) 2013, Teake Nutma, under the General Public \
 License.\"\>"], "Print"],
 
-Cell[BoxData["\<\"Based on LiE, by Arjen M. Cohen, Marc van Leeuwen, and Bert \
+Cell[BoxData["\<\"Based on LiE, by Arjeh M. Cohen, Marc van Leeuwen, and Bert \
 Lisser.\"\>"], "Print"],
 
 Cell[BoxData["\<\"============================================================\
@@ -80,6 +80,30 @@ Cell[BoxData["None"], "Output"]
 
 Cell[CellGroupData[{
 
+Cell["LieQuery", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "LieQuery"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"LieQuery[string] queries LiE with the input string and doesn't \
+parse the output.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588008266-1042698"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieQuery", "[", "\"\<dim(A2)\>\"", "]"}]], "Input"],
+
+Cell[BoxData["\<\"     8\"\>"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell["LieFunction", "Subsubsection"],
 
 Cell[CellGroupData[{
@@ -90,16 +114,27 @@ Cell[BoxData[
 Cell[BoxData[
  StyleBox["\<\"LieFunction[\\\"func\\\",args] calls the LiE function func \
 with the given Mathematica arguments.\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3587801662-7555822"]
+ CellTags->"Info3588008384-1042698"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"LieFunction", "[", 
-  RowBox[{"\"\<dim\>\"", ",", "\"\<E8\>\""}], "]"}]], "Input"],
+  RowBox[{"\"\<dim\>\"", ",", "\"\<A2\>\""}], "]"}]], "Input"],
 
-Cell[BoxData["248"], "Output"]
+Cell[BoxData["8"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieFunction", "[", 
+  RowBox[{"\"\<dim\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}], ",", "\"\<A2\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["8"], "Output"]
 }, Open  ]]
 }, Open  ]],
 
@@ -117,7 +152,7 @@ Cell[BoxData[
 the LiE  function func. It returns $Failed is the LiE function doesn't exist \
 or hasn't been translated to a Mathematica name yet.\"\>", 
   "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3587802493-7555822"]
+ CellTags->"Info3588007461-1888306"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -141,7 +176,206 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"LookupLieFunction", "[", "\"\<center\>\"", "]"}]], "Input"],
 
-Cell[BoxData["$Failed"], "Output"]
+Cell[BoxData["GroupCenter"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieFunctionTable", "//", "TableForm"}]], "Input"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"\<\"Adams\"\>", "\[Rule]", "\<\"Adams\"\>"}]},
+     {
+      RowBox[{"\<\"adjoint\"\>", "\[Rule]", "\<\"AdjointRepresentation\"\>"}]},
+     {
+      RowBox[{"\<\"alt_dom\"\>", "\[Rule]", "\<\"AlternatingDominant\"\>"}]},
+     {
+      RowBox[{"\<\"alt_tensor\"\>", 
+       "\[Rule]", "\<\"AlternatingTensor\"\>"}]},
+     {
+      RowBox[{"\<\"alt_W_sum\"\>", 
+       "\[Rule]", "\<\"AlternatingWeylSum\"\>"}]},
+     {
+      RowBox[{"\<\"block_mat\"\>", "\[Rule]", "\<\"BlockdiagonalMatrix\"\>"}]},
+     {
+      RowBox[{"\<\"branch\"\>", "\[Rule]", "\<\"Branch\"\>"}]},
+     {
+      RowBox[{"\<\"Bruhat_desc\"\>", "\[Rule]", "\<\"BruhatDesc\"\>"}]},
+     {
+      RowBox[{"\<\"Bruhat_leq\"\>", "\[Rule]", "\<\"BruhatLeq\"\>"}]},
+     {
+      RowBox[{"\<\"canonical\"\>", "\[Rule]", "\<\"Canonical\"\>"}]},
+     {
+      RowBox[{"\<\"Cartan\"\>", "\[Rule]", "\<\"Cartan\"\>"}]},
+     {
+      RowBox[{"\<\"Cartan_type\"\>", "\[Rule]", "\<\"CartanType\"\>"}]},
+     {
+      RowBox[{"\<\"center\"\>", "\[Rule]", "\<\"GroupCenter\"\>"}]},
+     {
+      RowBox[{"\<\"cent_roots\"\>", "\[Rule]", "\<\"CentralRoots\"\>"}]},
+     {
+      RowBox[{"\<\"centr_type\"\>", "\[Rule]", "\<\"CentralType\"\>"}]},
+     {
+      RowBox[{"\<\"class_ord\"\>", "\[Rule]", "\<\"ConjugacyClassOrder\"\>"}]},
+     {
+      RowBox[{"\<\"closure\"\>", "\[Rule]", "\<\"Closure\"\>"}]},
+     {
+      RowBox[{"\<\"collect\"\>", "\[Rule]", "\<\"InverseBranch\"\>"}]},
+     {
+      RowBox[{"\<\"contragr\"\>", "\[Rule]", "\<\"Contragradient\"\>"}]},
+     {
+      RowBox[{"\<\"decomp\"\>", "\[Rule]", "\<\"Decomposition\"\>"}]},
+     {
+      RowBox[{"\<\"degree\"\>", "\[Rule]", "\<\"PolynomialDegree\"\>"}]},
+     {
+      RowBox[{"\<\"Demazure\"\>", "\[Rule]", "\<\"Demazure\"\>"}]},
+     {
+      RowBox[{"\<\"det_Cartan\"\>", "\[Rule]", "\<\"DetCartan\"\>"}]},
+     {
+      RowBox[{"\<\"diagram\"\>", "\[Rule]", "\<\"DynkinDiagram\"\>"}]},
+     {
+      RowBox[{"\<\"dim\"\>", "\[Rule]", "\<\"Dim\"\>"}]},
+     {
+      RowBox[{"\<\"dom_char\"\>", "\[Rule]", "\<\"DominantCharacter\"\>"}]},
+     {
+      RowBox[{"\<\"dominant\"\>", "\[Rule]", "\<\"Dominant\"\>"}]},
+     {
+      RowBox[{"\<\"dom_weights\"\>", "\[Rule]", "\<\"DominantWeights\"\>"}]},
+     {
+      RowBox[{"\<\"exponents\"\>", "\[Rule]", "\<\"Exponents\"\>"}]},
+     {
+      RowBox[{"\<\"filter_dom\"\>", "\[Rule]", "\<\"FilterDominant\"\>"}]},
+     {
+      RowBox[{"\<\"from_part\"\>", "\[Rule]", "\<\"FromPartition\"\>"}]},
+     {
+      RowBox[{"\<\"fundam\"\>", "\[Rule]", "\<\"FundamentalRoots\"\>"}]},
+     {
+      RowBox[{"\<\"high_root\"\>", "\[Rule]", "\<\"HighestRoot\"\>"}]},
+     {
+      RowBox[{"\<\"i_Cartan\"\>", "\[Rule]", "\<\"InverseCartan\"\>"}]},
+     {
+      RowBox[{"\<\"inprod\"\>", "\[Rule]", "\<\"InnerProduct\"\>"}]},
+     {
+      RowBox[{"\<\"KL_poly\"\>", "\[Rule]", "\<\"KazhdanLusztig\"\>"}]},
+     {
+      RowBox[{"\<\"Lie_code\"\>", "\[Rule]", "\<\"LieCode\"\>"}]},
+     {
+      RowBox[{"\<\"Lie_group\"\>", "\[Rule]", "\<\"LieGroup\"\>"}]},
+     {
+      RowBox[{"\<\"Lie_rank\"\>", "\[Rule]", "\<\"LieRank\"\>"}]},
+     {
+      RowBox[{"\<\"long_word\"\>", "\[Rule]", "\<\"LongestWord\"\>"}]},
+     {
+      RowBox[{"\<\"l_reduce\"\>", "\[Rule]", "\<\"LeftWeylReduce\"\>"}]},
+     {
+      RowBox[{"\<\"lr_reduce\"\>", "\[Rule]", "\<\"LeftRightWeylReduce\"\>"}]},
+     {
+      RowBox[{"\<\"LR_tensor\"\>", 
+       "\[Rule]", "\<\"LittlewoodRichardson\"\>"}]},
+     {
+      RowBox[{"\<\"max_sub\"\>", "\[Rule]", "\<\"MaximalSubgroup\"\>"}]},
+     {
+      RowBox[{"\<\"n_comp\"\>", 
+       "\[Rule]", "\<\"NumberOfSimpleComponents\"\>"}]},
+     {
+      RowBox[{"\<\"next_part\"\>", "\[Rule]", "\<\"NextPartition\"\>"}]},
+     {
+      RowBox[{"\<\"next_perm\"\>", "\[Rule]", "\<\"NextPermutation\"\>"}]},
+     {
+      RowBox[{"\<\"next_tabl\"\>", "\[Rule]", "\<\"NextTableau\"\>"}]},
+     {
+      RowBox[{"\<\"norm\"\>", "\[Rule]", "\<\"RootNorm\"\>"}]},
+     {
+      RowBox[{"\<\"n_tabl\"\>", "\[Rule]", "\<\"NumberOfTableaux\"\>"}]},
+     {
+      RowBox[{"\<\"n_vars\"\>", "\[Rule]", "\<\"NumberOfVariables\"\>"}]},
+     {
+      RowBox[{"\<\"orbit\"\>", "\[Rule]", "\<\"Orbit\"\>"}]},
+     {
+      RowBox[{"\<\"plethysm\"\>", "\[Rule]", "\<\"Plethysm\"\>"}]},
+     {
+      RowBox[{"\<\"pos_roots\"\>", "\[Rule]", "\<\"PositiveRoots\"\>"}]},
+     {
+      RowBox[{"\<\"p_tensor\"\>", "\[Rule]", "\<\"TensorPower\"\>"}]},
+     {
+      RowBox[{"\<\"print_tab\"\>", "\[Rule]", "\<\"PrintTableau\"\>"}]},
+     {
+      RowBox[{"\<\"reduce\"\>", "\[Rule]", "\<\"WeylReduce\"\>"}]},
+     {
+      RowBox[{"\<\"reflection\"\>", "\[Rule]", "\<\"Reflection\"\>"}]},
+     {
+      RowBox[{"\<\"res_mat\"\>", "\[Rule]", "\<\"RestrictionMatrix\"\>"}]},
+     {
+      RowBox[{"\<\"row_index\"\>", "\[Rule]", "\<\"RowIndex\"\>"}]},
+     {
+      RowBox[{"\<\"R_poly\"\>", "\[Rule]", "\<\"RPolynomial\"\>"}]},
+     {
+      RowBox[{"\<\"r_reduce\"\>", "\[Rule]", "\<\"RightWeylReduce\"\>"}]},
+     {
+      RowBox[{"\<\"RS\"\>", "\[Rule]", "\<\"RobinsonSchensted\"\>"}]},
+     {
+      RowBox[{"\<\"shape\"\>", "\[Rule]", "\<\"TableauShape\"\>"}]},
+     {
+      RowBox[{"\<\"sign_part\"\>", "\[Rule]", "\<\"PartitionSign\"\>"}]},
+     {
+      RowBox[{"\<\"spectrum\"\>", "\[Rule]", "\<\"ToralSpectrum\"\>"}]},
+     {
+      RowBox[{"\<\"support\"\>", "\[Rule]", "\<\"Support\"\>"}]},
+     {
+      RowBox[{"\<\"sym_char\"\>", "\[Rule]", "\<\"SymmetricCharacter\"\>"}]},
+     {
+      RowBox[{"\<\"sym_orbit\"\>", "\[Rule]", "\<\"SymmetricOrbit\"\>"}]},
+     {
+      RowBox[{"\<\"sym_tensor\"\>", 
+       "\[Rule]", "\<\"SymmetricTensorPower\"\>"}]},
+     {
+      RowBox[{"\<\"tableaux\"\>", 
+       "\[Rule]", "\<\"TableauxOfPartition\"\>"}]},
+     {
+      RowBox[{"\<\"tensor\"\>", "\[Rule]", "\<\"LieTensor\"\>"}]},
+     {
+      RowBox[{"\<\"to_part\"\>", "\[Rule]", "\<\"ToPartition\"\>"}]},
+     {
+      RowBox[{"\<\"trans_part\"\>", 
+       "\[Rule]", "\<\"TransosePartition\"\>"}]},
+     {
+      RowBox[{"\<\"unique\"\>", "\[Rule]", "\<\"CanonicalMatrix\"\>"}]},
+     {
+      RowBox[{"\<\"v_decomp\"\>", "\[Rule]", "\<\"VirtualDecomposition\"\>"}]},
+     {
+      RowBox[{"\<\"W_action\"\>", "\[Rule]", "\<\"WeylAction\"\>"}]},
+     {
+      RowBox[{"\<\"W_orbit\"\>", "\[Rule]", "\<\"WeylOrbit\"\>"}]},
+     {
+      RowBox[{"\<\"W_orbit_grap\"\>", "\[Rule]", "\<\"WeylOrbitGrap\"\>"}]},
+     {
+      RowBox[{"\<\"W_orbit_size\"\>", "\[Rule]", "\<\"WeylOrbitSize\"\>"}]},
+     {
+      RowBox[{"\<\"W_order\"\>", "\[Rule]", "\<\"WeylOrder\"\>"}]},
+     {
+      RowBox[{"\<\"W_rt_action\"\>", "\[Rule]", "\<\"WeylRootAction\"\>"}]},
+     {
+      RowBox[{"\<\"W_rt_orbit\"\>", "\[Rule]", "\<\"WeylRootOrbit\"\>"}]},
+     {
+      RowBox[{"\<\"W_word\"\>", "\[Rule]", "\<\"WeylWord\"\>"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output"]
 }, Open  ]]
 }, Open  ]],
 
@@ -157,7 +391,7 @@ Cell[BoxData[
 Cell[BoxData[
  StyleBox["\<\"Dim is the equivalent of the LiE function \\\"dim\\\".\"\>", 
   "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3587802410-7555822"]
+ CellTags->"Info3588007565-1888306"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -166,6 +400,14 @@ Cell[BoxData[
  RowBox[{"Dim", "[", "\"\<A2\>\"", "]"}]], "Input"],
 
 Cell[BoxData["8"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDefaultAlgebra", "[", "\"\<A2\>\"", "]"}]], "Input"],
+
+Cell[BoxData["\<\"A2\"\>"], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -229,23 +471,23 @@ Cell[BoxData["64"], "Output"]
 
 Cell[CellGroupData[{
 
-Cell["SymTensor", "Subsubsection"],
+Cell["SymmetricTensorPower", "Subsubsection"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"?", "SymTensor"}]], "Input"],
+ RowBox[{"?", "SymmetricTensorPower"}]], "Input"],
 
 Cell[BoxData[
- StyleBox["\<\"SymTensor is the equivalent of the LiE function \\\"sym_tensor\
-\\\".\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3587802415-7555822"]
+ StyleBox["\<\"SymmetricTensorPower is the equivalent of the LiE function \
+\\\"sym_tensor\\\".\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3587992787-4521230"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"SymTensor", "[", 
+ RowBox[{"SymmetricTensorPower", "[", 
   RowBox[{"2", ",", 
    RowBox[{"{", 
     RowBox[{"1", ",", "1"}], "}"}]}], "]"}]], "Input"],
@@ -276,10 +518,55 @@ Cell[BoxData[
 
 Cell[BoxData["36"], "Output"]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["DynkinDiagram", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DynkinDiagram", "[", "]"}]], "Input"],
+
+Cell[BoxData["\<\"\\nO---O\\n1   2   \\nA2\\n\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DynkinDiagram", "[", "\"\<A2E8D4T3\>\"", "]"}]], "Input"],
+
+Cell[BoxData["\<\"\\nO---O\\n1   2   \\nA2\\n\\n        O 4\\n        |\\n    \
+    |\\nO---O---O---O---O---O---O\\n3   5   6   7   8   9   10  \\nE8\\n\\n   \
+ O 13\\n    |\\n    |\\nO---O---O\\n11  12  14\\nD4\\n\\nWith 3-dimensional \
+central torus.\\n\"\>"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["MaximalSubgroup", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MaximalSubgroup", "[", "\"\<E8\>\"", "]"}]], "Input"],
+
+Cell[BoxData["\<\"G2F4,C2,A1A2,A1,A1,A1,D8,A8,A4A4,E6A2,E7A1\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MaximalSubgroup", "[", "]"}]], "Input"],
+
+Cell[BoxData["\<\"A1,A1\"\>"], "Output"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{740, 756},
-WindowMargins->{{Automatic, 227}, {Automatic, 67}},
+WindowMargins->{{Automatic, 164}, {Automatic, 41}},
 ShowSelection->True,
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",

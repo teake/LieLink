@@ -92,6 +92,10 @@ LookupLieFunction::usage =
 function func. It returns $Failed is the LiE function doesn't exist or \
 hasn't been translated to a Mathematica name yet.";
 
+LieFunctionTable::usage =
+	"LieFunctionTable is a list of LiE functions and their short-hand Mathematica \
+counterparts.";
+
 Begin["`Private`"]
 
 
@@ -118,11 +122,6 @@ If[ !DirectoryQ @ tempLieLinkDir,
 $LieInFile 	= FileNameJoin @ { tempLieLinkDir, "LieLinkInFile" }
 $LieOutFile = FileNameJoin @ { tempLieLinkDir, "LieLinkOutFile" }
 
-$DevNull = 
-	If[ $OperatingSystem === "Windows",
-		"NUL",
-		"/dev/null"
-	]
 
 (*************************************
  *                                   *
@@ -149,26 +148,17 @@ CheckLieExecutableAbort[] :=
 	];
 
 (* Internal variable for the default algebra. *)
-$DefaultAlgebra = None;
+If[!ValueQ[$DefaultAlgebra],
+	$DefaultAlgebra = None
+];
 
 (* Gives part of wrapped Lie query if the standard algebr is set. *)
-DefaultAlgebraQuery[] := 
+AddDefaultAlgebraQuery[string_] := 
 	If[
 		$DefaultAlgebra =!= None,
 		"setdefault(" <> $DefaultAlgebra <> ")\n",
 		""
-	];
-
-(* Wraps a query for LiE such that the result is written to the out file. *)
-WrapQuery[query_String] := 
-	DefaultAlgebraQuery[] <> "LIE = ( "  <> query <> " )\n? LIE > " <> $LieOutFile <> "\n";
-
-(* Trims the output of LiE to the relevant string. *)
-TrimLieResult[result_String] /; StringMatchQ[result, "\nLIE:=" ~~ ___ ~~ ";"] :=
-	StringTrim @ StringTake[result,{7,-2}];
-(* Issue a warning if the LiE result is not of the expected form. *)
-TrimLieResult[result_] := 
-	(Message[LieQuery::invalid]; Abort[]);
+	] <> string;
 
 (* Main function for querying LiE. *)
 LieQuery[query_String] := 
@@ -177,13 +167,13 @@ LieQuery[query_String] :=
 		CheckLieExecutableAbort[];
 		(* Save the query to the in-file. *)
 		Put[ 
-			OutputForm @ WrapQuery @ query, 
+			OutputForm @ AddDefaultAlgebraQuery @ query, 
 			$LieInFile
 		];
 		(* Run LiE. *)
 		returncode = Run @ StringJoin[
 			"cd " <> $LieDirectory <> ";",
-			"./" <> $LieExecutable <> " > " <> $DevNull <> " < " <> $LieInFile
+			"./" <> $LieExecutable <> " > " <> $LieOutFile <> " < " <> $LieInFile
 		];
 		(* Check the return code. *)
 		If[ returncode =!= 0,
@@ -191,9 +181,15 @@ LieQuery[query_String] :=
 			Abort[];
 		];
 		(* Fetch result from the out-file. *)
-		TrimLieResult@Import[$LieOutFile, "Text"]
+		CheckLieResult@Import[$LieOutFile, "Text"]
 	];
 
+(* Issue a warning if the LiE result is not of the expected form. *)
+CheckLieResult[result_] /; StringMatchQ[result,"(" ~~ ___ ~~ "of file stdin)"] := 
+	(Message[LieQuery::invalid]; Abort[]);
+(* Trims the output of LiE to the relevant string. *)
+CheckLieResult[result_String] :=
+	result;
 
 (*************************************
  *                                   *
@@ -202,20 +198,25 @@ LieQuery[query_String] :=
  *************************************)
 
 (* Case 1: a number. *)
-FromLieOutput[s_String] /; StringMatchQ[s, NumberString] := 
-	ToExpression[s];
+FromLieOutput[s_String] /; StringMatchQ[s, (Whitespace...) ~~ NumberString ~~ (Whitespace...)] := 
+	ToExpression @ StringTrim @ s;
 
 (* Case 2: a vector / matrix / Laurent polynomial. *)
-FromLieOutput[s_String] /; StringMatchQ[s, "[" ~~ ___ ~~ "]"] := 
-	ToLiePolynomial@ToExpression@StringReplace[s, {"[" -> "{", "]" -> "}"}];
+FromLieOutput[s_String] /; StringMatchQ[s, (Whitespace...) ~~ "[" ~~ ___ ~~ "]" ~~ (Whitespace...)] := 
+	ToLiePolynomial@ToExpression@StringReplace[StringTrim @ s, {"[" -> "{", "]" -> "}"}];
 
 ToLiePolynomial[expr_] := expr;
 ToLiePolynomial[list : {PatternSequence[_Integer, {___Integer}] ...}] := 
 	Plus @@ ((First[#]*LieTerm @@ Last[#]) & /@ Partition[list, 2])
 
-(* Case 3: a string. *)
-FromLieOutput[s_String] /; StringMatchQ[s, "\"" ~~ ___ ~~ "\""] := 
-	StringTake[s, {2, -2}];
+(* Case 3: a string beginning with "     ". *)
+FromLieOutput[s_String] /; StringMatchQ[s, "     " ~~ (nwsp_ /; !StringMatchQ[nwsp, Whitespace]) ~~ ___] := 
+	StringTrim @ StringTake[s, {6, -1}];
+
+(* Case 4: a string. *)
+FromLieOutput[s_String] :=
+	s;
+
 
 
 (*************************************
@@ -356,6 +357,7 @@ LieFunctionTable =
 		"degree" 		-> "PolynomialDegree",
 		"Demazure" 		-> "Demazure",
 		"det_Cartan" 	-> "DetCartan",
+		"diagram"		-> "DynkinDiagram",
 		"dim" 			-> "Dim",
 		"dom_char" 		-> "DominantCharacter",
 		"dominant" 		-> "Dominant",
@@ -387,6 +389,7 @@ LieFunctionTable =
 		"plethysm" 		-> "Plethysm",
 		"pos_roots" 	-> "PositiveRoots",
 		"p_tensor" 		-> "TensorPower",
+		"print_tab"		-> "PrintTableau",
 		"reduce" 		-> "WeylReduce",
 		"reflection" 	-> "Reflection",
 		"res_mat" 		-> "RestrictionMatrix",
@@ -419,8 +422,6 @@ LieFunctionTable =
 
 UnsupportedLieFunctionTable =
 	{
-		"diagram",
-		"print_tab",
 		"all_one",
 		"coef",
 		"diag",

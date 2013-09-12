@@ -308,10 +308,16 @@ SetFunction[Rule[string_String, symbol_String]] :=
 	With[
 		{
 			functionName 	= Symbol["LieLink`" <> symbol],
+			symbolName		= symbol,
 			lieName 		= string
 		},
-		ClearAll[symbol];
+		(* Give a warning message if the new defintion shadows other symbols. *)
+		If[Context[symbolName] =!= "LieLink`Private`" && Context[symbolName] =!= "LieLink`",
+			Message[symbolName::shdw, symbolName, {Context[symbolName],"LieLink`"},"LieLink`"];
+		];
+		(* Make the definition. *)
 		functionName[args___] := LieFunction[lieName, args];
+		(* Set the usage message. *)
 		functionName::usage = symbol <> " is the equivalent of the LiE function \"" <> lieName <> "\".";
 	];
 
@@ -327,10 +333,116 @@ LookupLieFunction[string_String] :=
 (* Main dictionary between LiE functions -> Mathematica short-hand symbols. *)
 LieFunctionTable = 
 	{
+		"Adams" 		-> "Adams",
+		"adjoint" 		-> "AdjointRepresentation",
+		"alt_dom" 		-> "AlternatingDominant",
+		"alt_tensor" 	-> "AlternatingTensor",
+		"alt_W_sum" 	-> "AlternatingWeylSum",
+		"block_mat" 	-> "BlockdiagonalMatrix",
+		"branch" 		-> "Branch",
+		"Bruhat_desc" 	-> "BruhatDesc",
+		"Bruhat_leq" 	-> "BruhatLeq",
+		"canonical" 	-> "Canonical",
+		"Cartan" 		-> "Cartan",
+		"Cartan_type" 	-> "CartanType",
+		"center" 		-> "GroupCenter",
+		"cent_roots" 	-> "CentralRoots",
+		"centr_type" 	-> "CentralType",
+		"class_ord" 	-> "ConjugacyClassOrder",
+		"closure" 		-> "Closure",
+		"collect" 		-> "InverseBranch",
+		"contragr" 		-> "Contragradient",
+		"decomp" 		-> "Decomposition",
+		"degree" 		-> "PolynomialDegree",
+		"Demazure" 		-> "Demazure",
+		"det_Cartan" 	-> "DetCartan",
 		"dim" 			-> "Dim",
-		"sym_tensor"	-> "SymTensor",
-		"tensor" 		-> "LieTensor"
-   };
+		"dom_char" 		-> "DominantCharacter",
+		"dominant" 		-> "Dominant",
+		"dom_weights" 	-> "DominantWeights",
+		"exponents" 	-> "Exponents",
+		"filter_dom" 	-> "FilterDominant",
+		"from_part" 	-> "FromPartition",
+		"fundam" 		-> "FundamentalRoots",
+		"high_root" 	-> "HighestRoot",
+		"i_Cartan" 		-> "InverseCartan",
+		"inprod" 		-> "InnerProduct",
+		"KL_poly" 		-> "KazhdanLusztig",
+		"Lie_code" 		-> "LieCode",
+		"Lie_group" 	-> "LieGroup",
+		"Lie_rank" 		-> "LieRank",
+		"long_word" 	-> "LongestWord",
+		"l_reduce" 		-> "LeftWeylReduce",
+		"lr_reduce" 	-> "LeftRightWeylReduce",
+		"LR_tensor" 	-> "LittlewoodRichardson",
+		"max_sub" 		-> "MaximalSubgroup",
+		"n_comp" 		-> "NumberOfSimpleComponents",
+		"next_part" 	-> "NextPartition",
+		"next_perm" 	-> "NextPermutation",
+		"next_tabl" 	-> "NextTableau",
+		"norm" 			-> "RootNorm",
+		"n_tabl" 		-> "NumberOfTableaux",
+		"n_vars" 		-> "NumberOfVariables",
+		"orbit" 		-> "Orbit",
+		"plethysm" 		-> "Plethysm",
+		"pos_roots" 	-> "PositiveRoots",
+		"p_tensor" 		-> "TensorPower",
+		"reduce" 		-> "WeylReduce",
+		"reflection" 	-> "Reflection",
+		"res_mat" 		-> "RestrictionMatrix",
+		"row_index" 	-> "RowIndex",
+		"R_poly" 		-> "RPolynomial",
+		"r_reduce" 		-> "RightWeylReduce",
+		"RS" 			-> "RobinsonSchensted",
+		"shape" 		-> "TableauShape",
+		"sign_part" 	-> "PartitionSign",
+		"spectrum" 		-> "ToralSpectrum",
+		"support" 		-> "Support",
+		"sym_char" 		-> "SymmetricCharacter",
+		"sym_orbit" 	-> "SymmetricOrbit",
+		"sym_tensor" 	-> "SymmetricTensorPower",
+		"tableaux" 		-> "TableauxOfPartition",
+		"tensor" 		-> "LieTensor",
+		"to_part"	 	-> "ToPartition",
+		"trans_part" 	-> "TransosePartition",
+		"unique" 		-> "CanonicalMatrix",
+		"v_decomp" 		-> "VirtualDecomposition",
+		"W_action" 		-> "WeylAction",
+		"W_orbit" 		-> "WeylOrbit",
+		"W_orbit_grap" 	-> "WeylOrbitGrap",
+		"W_orbit_size" 	-> "WeylOrbitSize",
+		"W_order" 		-> "WeylOrder",
+		"W_rt_action" 	-> "WeylRootAction",
+		"W_rt_orbit" 	-> "WeylRootOrbit",
+		"W_word" 		-> "WeylWord"
+	};
+
+UnsupportedLieFunctionTable =
+	{
+		"diagram",
+		"print_tab",
+		"all_one",
+		"coef",
+		"diag",
+		"expon",
+		"factor",
+		"gcd",
+		"id",
+		"length",
+		"mat_vec",
+		"n_cols",
+		"n_pos_roots",
+		"r_rows",
+		"null",
+		"partitions",
+		"poly_null",
+		"poly_one",
+		"polynom",
+		"size",
+		"sort",
+		"used",
+		"vec_mat"
+	};
 
 (* Set the short-hand symbols. *)
 SetFunction /@ LieFunctionTable;

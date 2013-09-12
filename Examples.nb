@@ -1,6 +1,34 @@
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"<<", "LieLink`"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"============================================================\
+======\"\>"], "Print"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Package LieLink` version \"\>", 
+   "\[InvisibleSpace]", "\<\"0.2.0\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"2013", ",", "9", ",", "11"}], "}"}]}],
+  SequenceForm["Package LieLink` version ", "0.2.0", ", ", {2013, 9, 11}],
+  Editable->False]], "Print"],
+
+Cell[BoxData["\<\"CopyRight (C) 2013, Teake Nutma, under the General Public \
+License.\"\>"], "Print"],
+
+Cell[BoxData["\<\"Based on LiE, by Arjen M. Cohen, Marc van Leeuwen, and Bert \
+Lisser.\"\>"], "Print"],
+
+Cell[BoxData["\<\"============================================================\
+======\"\>"], "Print"]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 

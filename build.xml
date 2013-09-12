@@ -17,7 +17,7 @@
 		<!-- Zip everything in a distributable file. -->
 		<zip 
 			destfile="${basedir}/dist/LieLink.${git.newversion}.zip" 
-			includes="CHANGELOG,LICENSE,README.md,LieLink/LiE/README.md,LieLink/Kernel/init.m,LieLink/LieLink.m" 
+			includes="CHANGELOG,LICENSE,README.md,LieLink/LiE/README.md,LieLink/Kernel/init.m,LieLink/LieLink.m,LieLink/VersionNumber.m" 
 			basedir="." update="no"
 		/>
 	</target>

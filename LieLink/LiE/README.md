@@ -5,6 +5,7 @@ The list of files to be placed here is:
     Lie.exe
     LEARN.ind
     INFO.ind
+    INFO.a
     INFO.0
     INFO.1
     INFO.2

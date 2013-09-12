@@ -1,7 +1,13 @@
 LieLink
 =======
 
-A Mathematica interface for LiE. LieLink needs Mathematica version 7 or higher.
+LieLink is a Mathematica interface for LiE. With it you can for example compute tensor products
+of representations:
+
+    LieTensor[{1, 0}, {1, 0}, "A2"]
+    (* => {0,1} + {2,0} *)
+
+LieLink needs Mathematica version 7 or higher.
 
 Installation
 ------------
@@ -35,6 +41,7 @@ After compilation, move the following files to the LiE subdirectory in the LieLi
     Lie.exe
     LEARN.ind
     INFO.ind
+    INFO.a
     INFO.0
     INFO.1
     INFO.2
@@ -64,26 +71,102 @@ The default algebra can be set with the `SetDefaultAlgebra` command:
     LieFunction["dim", "[1,0]"]
     (* => 3 *)
 
-There are also short-hand names for the following LiE commands:
-
-    dim         -> Dim
-    tensor      -> LieTensor
-    sym_tensor  -> SymTensor
-
-Available short-hands can be looked up with `LookupLieFunction`:
-
-    LookupLieFunction["sym_tensor"]
-    (* => SymTensor *)
-
-These short-hand commands are entered as follows:
+There are also short-hand functions for all LiE commands (a full list is given below):
 
     LieTensor[{1, 1}, {1, 1}, "A2"]
-    (* => LieTerm[0, 0] + LieTerm[0, 3] + 2*LieTerm[1, 1] + LieTerm[2, 2] + LieTerm[3, 0] *)
+    (* => {0, 0} + LieTerm{0, 3} + 2 {1, 1} + {2, 2} + {3, 0} *)
 
-The `LieTerm` objects print as red parentheses (their color is controlled via `$LieTermColor`), and behave
-as terms in Laurent polynomials. They can also be used as input:
+The brackets in the above output print red, which indicate that they'r actually `LieTerm` objects.
+These objects behave as terms in Laurent polynomials. They can also be used as input:
 
     SymTensor[2, LieTerm[1,1], "A2"]
     (* => LieTerm[0, 0] + LieTerm[1, 1] + LieTerm[2, 2] *)
 
 
+Short-hand functions
+--------------------
+
+    "Adams" 		-> "Adams",
+    "adjoint" 		-> "AdjointRepresentation",
+    "alt_dom" 		-> "AlternatingDominant",
+    "alt_tensor" 	-> "AlternatingTensor",
+    "alt_W_sum" 	-> "AlternatingWeylSum",
+    "block_mat" 	-> "BlockdiagonalMatrix",
+    "branch" 		-> "Branch",
+    "Bruhat_desc" 	-> "BruhatDesc",
+    "Bruhat_leq" 	-> "BruhatLeq",
+    "canonical" 	-> "Canonical",
+    "Cartan" 		-> "Cartan",
+    "Cartan_type" 	-> "CartanType",
+    "center" 		-> "GroupCenter",
+    "cent_roots" 	-> "CentralRoots",
+    "centr_type" 	-> "CentralType",
+    "class_ord" 	-> "ConjugacyClassOrder",
+    "closure" 		-> "Closure",
+    "collect" 		-> "InverseBranch",
+    "contragr" 		-> "Contragradient",
+    "decomp" 		-> "Decomposition",
+    "degree" 		-> "PolynomialDegree",
+    "Demazure" 		-> "Demazure",
+    "det_Cartan" 	-> "DetCartan",
+    "diagram"		-> "DynkinDiagram",
+    "dim" 			-> "Dim",
+    "dom_char" 		-> "DominantCharacter",
+    "dominant" 		-> "Dominant",
+    "dom_weights" 	-> "DominantWeights",
+    "exponents" 	-> "Exponents",
+    "filter_dom" 	-> "FilterDominant",
+    "from_part" 	-> "FromPartition",
+    "fundam" 		-> "FundamentalRoots",
+    "high_root" 	-> "HighestRoot",
+    "i_Cartan" 		-> "InverseCartan",
+    "inprod" 		-> "InnerProduct",
+    "KL_poly" 		-> "KazhdanLusztig",
+    "Lie_code" 		-> "LieCode",
+    "Lie_group" 	-> "LieGroup",
+    "Lie_rank" 		-> "LieRank",
+    "long_word" 	-> "LongestWord",
+    "l_reduce" 		-> "LeftWeylReduce",
+    "lr_reduce" 	-> "LeftRightWeylReduce",
+    "LR_tensor" 	-> "LittlewoodRichardson",
+    "max_sub" 		-> "MaximalSubgroup",
+    "n_comp" 		-> "NumberOfSimpleComponents",
+    "next_part" 	-> "NextPartition",
+    "next_perm" 	-> "NextPermutation",
+    "next_tabl" 	-> "NextTableau",
+    "norm" 			-> "RootNorm",
+    "n_tabl" 		-> "NumberOfTableaux",
+    "n_vars" 		-> "NumberOfVariables",
+    "orbit" 		-> "Orbit",
+    "plethysm" 		-> "Plethysm",
+    "pos_roots" 	-> "PositiveRoots",
+    "p_tensor" 		-> "TensorPower",
+    "print_tab"		-> "PrintTableau",
+    "reduce" 		-> "WeylReduce",
+    "reflection" 	-> "Reflection",
+    "res_mat" 		-> "RestrictionMatrix",
+    "row_index" 	-> "RowIndex",
+    "R_poly" 		-> "RPolynomial",
+    "r_reduce" 		-> "RightWeylReduce",
+    "RS" 			-> "RobinsonSchensted",
+    "shape" 		-> "TableauShape",
+    "sign_part" 	-> "PartitionSign",
+    "spectrum" 		-> "ToralSpectrum",
+    "support" 		-> "Support",
+    "sym_char" 		-> "SymmetricCharacter",
+    "sym_orbit" 	-> "SymmetricOrbit",
+    "sym_tensor" 	-> "SymmetricTensorPower",
+    "tableaux" 		-> "TableauxOfPartition",
+    "tensor" 		-> "LieTensor",
+    "to_part"	 	-> "ToPartition",
+    "trans_part" 	-> "TransosePartition",
+    "unique" 		-> "CanonicalMatrix",
+    "v_decomp" 		-> "VirtualDecomposition",
+    "W_action" 		-> "WeylAction",
+    "W_orbit" 		-> "WeylOrbit",
+    "W_orbit_grap" 	-> "WeylOrbitGrap",
+    "W_orbit_size" 	-> "WeylOrbitSize",
+    "W_order" 		-> "WeylOrder",
+    "W_rt_action" 	-> "WeylRootAction",
+    "W_rt_orbit" 	-> "WeylRootOrbit",
+    "W_word" 		-> "WeylWord"

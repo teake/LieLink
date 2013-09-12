@@ -4,8 +4,15 @@
 
 	<property name="egrepexec" value="/usr/bin/egrep"/>
 
-	<target name="zip" depends="changelog">
-		<delete file="${basedir}/dist/LieLink.${git.newversion}.zip"/>
+	<target name="updateversionnumber" depends="changelog">
+		<echo>## UPDATING VERSION NUMBER ##</echo>
+		<!-- Echo the version number. -->
+		<echo>Version number: ${lielink.version}</echo>
+		<!-- Replace the version number and date in the init.m file. -->
+		<replaceregexp file="${basedir}/LieLink/VersionNumber.m" match="(.*)" replace="${lielink.version}" byline="true" />
+	</target>
+	
+	<target name="zip" depends="changelog,updateversionnumber">
 		<echo>## CREATING ZIP FILE ##</echo>
 		<!-- Zip everything in a distributable file. -->
 		<zip 
@@ -48,7 +55,7 @@
 
 		<!-- Get the date. -->
 		<tstamp>
-			<format property="TODAY_XACT" pattern="yyyy-M-d" />
+			<format property="TODAY_LIELINK" pattern="yyyy-M-d" />
 		</tstamp>
 		
 		<!-- Get a list of tags from Git. -->
@@ -103,7 +110,7 @@
 			else
 			{
 				var newversion 	= lastversion + "." + String(project.getProperty("git.commitssincetag"));
-			    var newdate 	= project.getProperty("TODAY_XACT").split("-").join(", ");
+			    var newdate 	= project.getProperty("TODAY_LIELINK").split("-").join(", ");
 				tags = (tags.join("\n") + "\nHEAD").split("\n");
 			}
 			project.setProperty("git.newversion",newversion);
@@ -111,7 +118,7 @@
 			
 			/* Also set a string that matches the formatting in the init.m file. */
 			project.setProperty(
-				"xact.version",
+				"lielink.version",
 				"{\"" + newversion + "\", {" + newdate + "}}"
 			);			
 

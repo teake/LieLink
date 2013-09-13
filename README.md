@@ -157,7 +157,7 @@ This list is stored in the Mathematica variable `LieFunctionTable`.
     "norm" 			-> "RootNorm",
     "n_tabl" 		-> "NumberOfTableaux",
     "n_vars" 		-> "NumberOfVariables",
-    "orbit" 		-> "Orbit",
+    "orbit" 		-> "GroupOrbit",
     "plethysm" 		-> "Plethysm",
     "pos_roots" 	-> "PositiveRoots",
     "p_tensor" 		-> "TensorPower",

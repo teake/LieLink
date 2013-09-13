@@ -106,13 +106,18 @@ Begin["`Private`"]
  *************************************)
 
 
-$LieDirectory = 
-	FileNameJoin @ Join [ 
-		Drop[FileNameSplit@FindFile["LieLink`"], -2],
-		{ "LiE" } 
-	];
-$LieExecutable = 
-	"Liegap.exe";
+If[!ValueQ[$LieDirectory],
+	$LieDirectory = 
+		FileNameJoin @ Join [ 
+			Drop[FileNameSplit@FindFile["LieLink`"], -2],
+			{ "LiE" } 
+		];
+];
+
+If[!ValueQ[$LieExecutable],
+	$LieExecutable = 
+		"Liegap.exe";
+];
 
 tempLieLinkDir = FileNameJoin @ { $TemporaryDirectory, "LieLinkInOutFiles" };
 If[ !DirectoryQ @ tempLieLinkDir,

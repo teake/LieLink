@@ -203,7 +203,7 @@ Cell[BoxData[
       RowBox[{"\<\"alt_dom\"\>", "\[Rule]", "\<\"AlternatingDominant\"\>"}]},
      {
       RowBox[{"\<\"alt_tensor\"\>", 
-       "\[Rule]", "\<\"AlternatingTensor\"\>"}]},
+       "\[Rule]", "\<\"AlternatingTensorPower\"\>"}]},
      {
       RowBox[{"\<\"alt_W_sum\"\>", 
        "\[Rule]", "\<\"AlternatingWeylSum\"\>"}]},
@@ -212,11 +212,12 @@ Cell[BoxData[
      {
       RowBox[{"\<\"branch\"\>", "\[Rule]", "\<\"Branch\"\>"}]},
      {
-      RowBox[{"\<\"Bruhat_desc\"\>", "\[Rule]", "\<\"BruhatDesc\"\>"}]},
+      RowBox[{"\<\"Bruhat_desc\"\>", 
+       "\[Rule]", "\<\"BruhatDescendant\"\>"}]},
      {
       RowBox[{"\<\"Bruhat_leq\"\>", "\[Rule]", "\<\"BruhatLeq\"\>"}]},
      {
-      RowBox[{"\<\"canonical\"\>", "\[Rule]", "\<\"Canonical\"\>"}]},
+      RowBox[{"\<\"canonical\"\>", "\[Rule]", "\<\"CanonicalWeylWord\"\>"}]},
      {
       RowBox[{"\<\"Cartan\"\>", "\[Rule]", "\<\"Cartan\"\>"}]},
      {
@@ -224,9 +225,10 @@ Cell[BoxData[
      {
       RowBox[{"\<\"center\"\>", "\[Rule]", "\<\"GroupCenter\"\>"}]},
      {
-      RowBox[{"\<\"cent_roots\"\>", "\[Rule]", "\<\"CentralRoots\"\>"}]},
+      RowBox[{"\<\"cent_roots\"\>", 
+       "\[Rule]", "\<\"CentralizingRoots\"\>"}]},
      {
-      RowBox[{"\<\"centr_type\"\>", "\[Rule]", "\<\"CentralType\"\>"}]},
+      RowBox[{"\<\"centr_type\"\>", "\[Rule]", "\<\"CentralizerType\"\>"}]},
      {
       RowBox[{"\<\"class_ord\"\>", "\[Rule]", "\<\"ConjugacyClassOrder\"\>"}]},
      {
@@ -268,7 +270,8 @@ Cell[BoxData[
      {
       RowBox[{"\<\"inprod\"\>", "\[Rule]", "\<\"InnerProduct\"\>"}]},
      {
-      RowBox[{"\<\"KL_poly\"\>", "\[Rule]", "\<\"KazhdanLusztig\"\>"}]},
+      RowBox[{"\<\"KL_poly\"\>", 
+       "\[Rule]", "\<\"KazhdanLusztigPolynomial\"\>"}]},
      {
       RowBox[{"\<\"Lie_code\"\>", "\[Rule]", "\<\"LieCode\"\>"}]},
      {
@@ -285,7 +288,7 @@ Cell[BoxData[
       RowBox[{"\<\"LR_tensor\"\>", 
        "\[Rule]", "\<\"LittlewoodRichardson\"\>"}]},
      {
-      RowBox[{"\<\"max_sub\"\>", "\[Rule]", "\<\"MaximalSubgroup\"\>"}]},
+      RowBox[{"\<\"max_sub\"\>", "\[Rule]", "\<\"MaximalSubgroups\"\>"}]},
      {
       RowBox[{"\<\"n_comp\"\>", 
        "\[Rule]", "\<\"NumberOfSimpleComponents\"\>"}]},
@@ -359,7 +362,8 @@ Cell[BoxData[
      {
       RowBox[{"\<\"W_orbit\"\>", "\[Rule]", "\<\"WeylOrbit\"\>"}]},
      {
-      RowBox[{"\<\"W_orbit_grap\"\>", "\[Rule]", "\<\"WeylOrbitGrap\"\>"}]},
+      RowBox[{"\<\"W_orbit_graph\"\>", 
+       "\[Rule]", "\<\"WeylOrbitGraph\"\>"}]},
      {
       RowBox[{"\<\"W_orbit_size\"\>", "\[Rule]", "\<\"WeylOrbitSize\"\>"}]},
      {
@@ -554,12 +558,12 @@ central torus.\"\>"], "Output"]
 
 Cell[CellGroupData[{
 
-Cell["MaximalSubgroup", "Subsubsection"],
+Cell["MaximalSubgroups", "Subsubsection"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"MaximalSubgroup", "[", "\"\<E8\>\"", "]"}]], "Input"],
+ RowBox[{"MaximalSubgroups", "[", "\"\<E8\>\"", "]"}]], "Input"],
 
 Cell[BoxData["\<\"G2F4,C2,A1A2,A1,A1,A1,D8,A8,A4A4,E6A2,E7A1\"\>"], "Output"]
 }, Open  ]],
@@ -567,7 +571,7 @@ Cell[BoxData["\<\"G2F4,C2,A1A2,A1,A1,A1,D8,A8,A4A4,E6A2,E7A1\"\>"], "Output"]
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"MaximalSubgroup", "[", "]"}]], "Input"],
+ RowBox[{"MaximalSubgroups", "[", "]"}]], "Input"],
 
 Cell[BoxData["\<\"A1,A1\"\>"], "Output"]
 }, Open  ]]

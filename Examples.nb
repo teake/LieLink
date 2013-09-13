@@ -478,6 +478,14 @@ Cell[BoxData[
  RowBox[{"Dim", "/@", "%"}]], "Input"],
 
 Cell[BoxData["64"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dim", "[", "%%", "]"}]], "Input"],
+
+Cell[BoxData["64"], "Output"]
 }, Open  ]]
 }, Open  ]],
 

@@ -145,7 +145,7 @@ Test[
 Test[
 	ToLieInput[LieTerm[1, 0, 0]]
 	,
-	"[1,0,0]"
+	"1X[1,0,0]"
 	,
 	TestID->"Test-20130910-I8G2F8"
 ]
@@ -252,4 +252,12 @@ Test[
 	$Failed
 	,
 	TestID->"Test-20130910-T4N5B5"
+]
+
+Test[
+	Dim @ LieTensor[{1, 1}, {1, 1}]
+	,
+	64
+	,
+	TestID->"Test-20130913-X9G0B3"
 ]

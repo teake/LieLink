@@ -258,14 +258,9 @@ LieTerm /: Power[LieTerm[args___], n_Integer] :=
  *                                   *
  *************************************)
 
-(* Single LieTerm: convert to "[1,2,3,4]" *)
-ToLieInput[LieTerm[args___]] := 
- "[" <> StringJoin[Riffle[ToString /@ {args}, ","]] <> "]"
-
-
 (* LieTerm times an integer: convert to "1X[1,2,3,4]" *)
-ToLieInput[int_Integer *  lt_LieTerm] := 
-	ToString[int] <> "X" <> ToLieInput[lt];
+ToLieInput[ Optional[int_Integer] * LieTerm[args___] ] := 
+	ToString[int] <> "X[" <> StringJoin[Riffle[ToString /@ {args}, ","]] <> "]";
 
 (* A sum. Take special care of minus / plus signs. *)
 ToLieInput[sum_Plus] := 

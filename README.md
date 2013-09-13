@@ -2,8 +2,8 @@ LieLink
 =======
 
 LieLink is a Mathematica interface for LiE. LiE is a computer algebra package for 
-Lie group computations. LieLink makes it possible to call LiE functions
-directly from Mathematica. Here is an example:
+Lie group computations. LieLink makes it possible to call LiE functions directly 
+from Mathematica. Here is an example:
 
     <<LieLink`
     
@@ -21,14 +21,14 @@ LieLink requires at least Mathematica 7.
 
 ### Obtaining the package ###
 
-Download the latest release https://github.com/teake/LieLink/releases, unzip it, and move the LieLink
-directory to the Mathematica applications directory. The location of this directory can be found by 
-typing the command
+Download the latest release https://github.com/teake/LieLink/releases, unzip it, 
+and move the LieLink directory to the Mathematica applications directory. The location 
+of this directory can be found by typing the command
 
     FileNameJoin @ {$UserBaseDirectory, "Applications"}
 
-into Mathematica. Alternatively, you can checkout this repository and move the LieLink subdirectory to 
-the same Mathematica applications directory.
+into Mathematica. Alternatively, you can checkout this repository and move the LieLink 
+subdirectory to the same Mathematica applications directory.
 
 ### Compiling LiE ###
 
@@ -39,9 +39,9 @@ to point LieLink to its location before loading the package:
     LieLink`$LieDirectory = "path/to/directoryofLiE";
     <<LieLink`
 
-If not, you need to compile the GAP version of LiE.
-Download the compile-only version of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, unzip it, 
-and compile the GAP version by running
+If not, you need to compile the GAP version of LiE. Download the compile-only version
+of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, unzip it, and compile the 
+GAP version by running
 
     make
     make Liegap.exe
@@ -108,18 +108,18 @@ This list is stored in the Mathematica variable `LieFunctionTable`.
     "Adams" 		-> "Adams",
     "adjoint" 		-> "AdjointRepresentation",
     "alt_dom" 		-> "AlternatingDominant",
-    "alt_tensor" 	-> "AlternatingTensor",
+    "alt_tensor" 	-> "AlternatingTensorPower",
     "alt_W_sum" 	-> "AlternatingWeylSum",
     "block_mat" 	-> "BlockdiagonalMatrix",
     "branch" 		-> "Branch",
-    "Bruhat_desc" 	-> "BruhatDesc",
+    "Bruhat_desc" 	-> "BruhatDescendant",
     "Bruhat_leq" 	-> "BruhatLeq",
-    "canonical" 	-> "Canonical",
+    "canonical" 	-> "CanonicalWeylWord",
     "Cartan" 		-> "Cartan",
     "Cartan_type" 	-> "CartanType",
     "center" 		-> "GroupCenter",
-    "cent_roots" 	-> "CentralRoots",
-    "centr_type" 	-> "CentralType",
+    "cent_roots" 	-> "CentralizingRoots",
+    "centr_type" 	-> "CentralizerType",
     "class_ord" 	-> "ConjugacyClassOrder",
     "closure" 		-> "Closure",
     "collect" 		-> "InverseBranch",
@@ -140,7 +140,7 @@ This list is stored in the Mathematica variable `LieFunctionTable`.
     "high_root" 	-> "HighestRoot",
     "i_Cartan" 		-> "InverseCartan",
     "inprod" 		-> "InnerProduct",
-    "KL_poly" 		-> "KazhdanLusztig",
+    "KL_poly" 		-> "KazhdanLusztigPolynomial",
     "Lie_code" 		-> "LieCode",
     "Lie_group" 	-> "LieGroup",
     "Lie_rank" 		-> "LieRank",
@@ -148,7 +148,7 @@ This list is stored in the Mathematica variable `LieFunctionTable`.
     "l_reduce" 		-> "LeftWeylReduce",
     "lr_reduce" 	-> "LeftRightWeylReduce",
     "LR_tensor" 	-> "LittlewoodRichardson",
-    "max_sub" 		-> "MaximalSubgroup",
+    "max_sub" 		-> "MaximalSubgroups",
     "n_comp" 		-> "NumberOfSimpleComponents",
     "next_part" 	-> "NextPartition",
     "next_perm" 	-> "NextPermutation",
@@ -183,7 +183,7 @@ This list is stored in the Mathematica variable `LieFunctionTable`.
     "v_decomp" 		-> "VirtualDecomposition",
     "W_action" 		-> "WeylAction",
     "W_orbit" 		-> "WeylOrbit",
-    "W_orbit_grap" 	-> "WeylOrbitGrap",
+    "W_orbit_graph"	-> "WeylOrbitGraph",
     "W_orbit_size" 	-> "WeylOrbitSize",
     "W_order" 		-> "WeylOrder",
     "W_rt_action" 	-> "WeylRootAction",

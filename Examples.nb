@@ -575,6 +575,102 @@ Cell[BoxData[
 
 Cell[BoxData["\<\"A1,A1\"\>"], "Output"]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["CartanMatrix / CartanProduct", "Subsubsection"],
+
+Cell["\<\
+CartanMatrix and CartanProduct both point to \[OpenCurlyDoubleQuote]cartan\
+\[CloseCurlyDoubleQuote].\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "CartanMatrix"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"CartanMatrix is the equivalent of the LiE function \
+\\\"Cartan\\\".\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588067650-4819655"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "CartanProduct"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"CartanProduct is the equivalent of the LiE function \\\"Cartan\
+\\\".\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588067655-4819655"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieFunction", "[", "\"\<Cartan\>\"", "]"}]], "Input"],
+
+Cell[BoxData["CartanProduct"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CartanMatrix", "[", "]"}], "//", "MatrixForm"}]], "Input"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"2", 
+      RowBox[{"-", "1"}]},
+     {
+      RowBox[{"-", "1"}], "2"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CartanProduct", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"-", "1"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CartanMatrix", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"-", "1"}]], "Output"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{740, 756},

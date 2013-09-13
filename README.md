@@ -1,9 +1,9 @@
 LieLink
 =======
 
-LieLink is a Mathematica interface for LiE, the computer algebra package for 
+LieLink is a Mathematica interface for LiE. LiE is a computer algebra package for 
 Lie group computations. LieLink makes it possible to call LiE functions
-directory from Mathematica. Here is an example:
+directly from Mathematica. Here is an example:
 
     <<LieLink`
     

@@ -413,7 +413,7 @@ LieFunctionTable =
 		"tableaux" 		-> "TableauxOfPartition",
 		"tensor" 		-> "LieTensor",
 		"to_part"	 	-> "ToPartition",
-		"trans_part" 	-> "TransosePartition",
+		"trans_part" 	-> "TransposePartition",
 		"unique" 		-> "CanonicalMatrix",
 		"v_decomp" 		-> "VirtualDecomposition",
 		"W_action" 		-> "WeylAction",

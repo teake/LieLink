@@ -12,11 +12,11 @@ Cell[BoxData["\<\"============================================================\
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"Package LieLink` version \"\>", 
-   "\[InvisibleSpace]", "\<\"0.2.0.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
+   "\[InvisibleSpace]", "\<\"0.2.0.3\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
     RowBox[{"2013", ",", "9", ",", "12"}], "}"}]}],
-  SequenceForm["Package LieLink` version ", "0.2.0.1", ", ", {2013, 9, 12}],
+  SequenceForm["Package LieLink` version ", "0.2.0.3", ", ", {2013, 9, 12}],
   Editable->False]], "Print"],
 
 Cell[BoxData["\<\"CopyRight (C) 2013, Teake Nutma, under the General Public \
@@ -90,7 +90,7 @@ Cell[BoxData[
 Cell[BoxData[
  StyleBox["\<\"LieQuery[string] queries LiE with the input string and doesn't \
 parse the output.\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588008266-1042698"]
+ CellTags->"Info3588057292-7624499"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -98,7 +98,51 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"LieQuery", "[", "\"\<dim(A2)\>\"", "]"}]], "Input"],
 
-Cell[BoxData["\<\"     8\"\>"], "Output"]
+Cell[BoxData["\<\"8\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LieQuery", "[", "\"\<diagram(A2)\>\"", "]"}]], "Input"],
+
+Cell[BoxData["\<\"O---O\\n1   2   \\nA2\"\>"], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["CallLieFunction", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "CallLieFunction"}]], "Input"],
+
+Cell[BoxData[
+ StyleBox["\<\"CallLieFunction[\\\"func\\\",args] calls the LiE function func \
+with the given Mathematica arguments.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588057473-7624499"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CallLieFunction", "[", 
+  RowBox[{"\"\<dim\>\"", ",", "\"\<A2\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["8"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CallLieFunction", "[", 
+  RowBox[{"\"\<dim\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}], ",", "\"\<A2\>\""}], "]"}]], "Input"],
+
+Cell[BoxData["8"], "Output"]
 }, Open  ]]
 }, Open  ]],
 
@@ -112,53 +156,17 @@ Cell[BoxData[
  RowBox[{"?", "LieFunction"}]], "Input"],
 
 Cell[BoxData[
- StyleBox["\<\"LieFunction[\\\"func\\\",args] calls the LiE function func \
-with the given Mathematica arguments.\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588008384-1042698"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"LieFunction", "[", 
-  RowBox[{"\"\<dim\>\"", ",", "\"\<A2\>\""}], "]"}]], "Input"],
-
-Cell[BoxData["8"], "Output"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"LieFunction", "[", 
-  RowBox[{"\"\<dim\>\"", ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "1"}], "}"}], ",", "\"\<A2\>\""}], "]"}]], "Input"],
-
-Cell[BoxData["8"], "Output"]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["LookupLieFunction", "Subsubsection"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"?", "LookupLieFunction"}]], "Input"],
-
-Cell[BoxData[
- StyleBox["\<\"LookupLieFunction[\\\"func\\\"] gives the Mathematica name of \
-the LiE  function func. It returns $Failed is the LiE function doesn't exist \
-or hasn't been translated to a Mathematica name yet.\"\>", 
+ StyleBox["\<\"LieFunction[\\\"func\\\"] gives the Mathematica name of the \
+LiE  function func. It returns $Failed is the LiE function doesn't exist or \
+hasn't been translated to a Mathematica name yet.\"\>", 
   "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588007461-1888306"]
+ CellTags->"Info3588057495-7624499"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"LookupLieFunction", "[", "\"\<dim\>\"", "]"}]], "Input"],
+ RowBox[{"LieFunction", "[", "\"\<dim\>\"", "]"}]], "Input"],
 
 Cell[BoxData["Dim"], "Output"]
 }, Open  ]],
@@ -166,7 +174,7 @@ Cell[BoxData["Dim"], "Output"]
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"LookupLieFunction", "[", "\"\<doesn't exist\>\"", "]"}]], "Input"],
+ RowBox[{"LieFunction", "[", "\"\<doesn't exist\>\"", "]"}]], "Input"],
 
 Cell[BoxData["$Failed"], "Output"]
 }, Open  ]],
@@ -174,7 +182,7 @@ Cell[BoxData["$Failed"], "Output"]
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"LookupLieFunction", "[", "\"\<center\>\"", "]"}]], "Input"],
+ RowBox[{"LieFunction", "[", "\"\<center\>\"", "]"}]], "Input"],
 
 Cell[BoxData["GroupCenter"], "Output"]
 }, Open  ]],
@@ -391,7 +399,7 @@ Cell[BoxData[
 Cell[BoxData[
  StyleBox["\<\"Dim is the equivalent of the LiE function \\\"dim\\\".\"\>", 
   "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588007565-1888306"]
+ CellTags->"Info3588057515-7624499"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -481,7 +489,7 @@ Cell[BoxData[
 Cell[BoxData[
  StyleBox["\<\"SymmetricTensorPower is the equivalent of the LiE function \
 \\\"sym_tensor\\\".\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3587992787-4521230"]
+ CellTags->"Info3588057522-7624499"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -529,7 +537,7 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DynkinDiagram", "[", "]"}]], "Input"],
 
-Cell[BoxData["\<\"\\nO---O\\n1   2   \\nA2\\n\"\>"], "Output"]
+Cell[BoxData["\<\"O---O\\n1   2   \\nA2\"\>"], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -537,10 +545,10 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DynkinDiagram", "[", "\"\<A2E8D4T3\>\"", "]"}]], "Input"],
 
-Cell[BoxData["\<\"\\nO---O\\n1   2   \\nA2\\n\\n        O 4\\n        |\\n    \
-    |\\nO---O---O---O---O---O---O\\n3   5   6   7   8   9   10  \\nE8\\n\\n   \
- O 13\\n    |\\n    |\\nO---O---O\\n11  12  14\\nD4\\n\\nWith 3-dimensional \
-central torus.\\n\"\>"], "Output"]
+Cell[BoxData["\<\"O---O\\n1   2   \\nA2\\n\\n        O 4\\n        |\\n       \
+ |\\nO---O---O---O---O---O---O\\n3   5   6   7   8   9   10  \\nE8\\n\\n    O \
+13\\n    |\\n    |\\nO---O---O\\n11  12  14\\nD4\\n\\nWith 3-dimensional \
+central torus.\"\>"], "Output"]
 }, Open  ]]
 }, Open  ]],
 

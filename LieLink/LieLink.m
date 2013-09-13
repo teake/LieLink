@@ -80,20 +80,20 @@ $LieTermColor::usage =
 ToLieInput::usage = 
 	"ToLieInput[expr] converts expr to a string suited for LiE commands.";
 
-LieFunction::usage = 
-	"LieFunction[\"func\",args] calls the LiE function func with the given \
+CallLieFunction::usage = 
+	"CallLieFunction[\"func\",args] calls the LiE function func with the given \
 Mathematica arguments.";
 
 SetDefaultAlgebra::usage = 
 	"SetDefaultAlgebra[\"algebra\"] sets the default Lie algebra.";
 
-LookupLieFunction::usage =
-	"LookupLieFunction[\"func\"] gives the Mathematica name of the LiE  \
+LieFunction::usage =
+	"LieFunction[\"func\"] gives the Mathematica name of the LiE  \
 function func. It returns $Failed is the LiE function doesn't exist or \
 hasn't been translated to a Mathematica name yet.";
 
 LieFunctionTable::usage =
-	"LieFunctionTable is a list of LiE functions and their short-hand Mathematica \
+	"LieFunctionTable contains a list of LiE functions and their short-hand Mathematica \
 counterparts.";
 
 Begin["`Private`"]
@@ -181,15 +181,20 @@ LieQuery[query_String] :=
 			Abort[];
 		];
 		(* Fetch result from the out-file. *)
-		CheckLieResult@Import[$LieOutFile, "Text"]
+		TrimLieResult @ CheckLieResult @ Import[$LieOutFile, "Text"]
 	];
 
 (* Issue a warning if the LiE result is not of the expected form. *)
 CheckLieResult[result_] /; StringMatchQ[result,"(" ~~ ___ ~~ "of file stdin)"] := 
 	(Message[LieQuery::invalid]; Abort[]);
-(* Trims the output of LiE to the relevant string. *)
 CheckLieResult[result_String] :=
 	result;
+
+(* Trims the output of LiE to the relevant string. *)
+TrimLieResult[result_String] /; StringMatchQ[result, "     " ~~ (nwsp_ /; !StringMatchQ[nwsp, Whitespace]) ~~ ___] := 
+	StringTrim @ StringTake[result, {6, -1}];
+TrimLieResult[result_String] :=
+	StringTrim[result, "\n"];
 
 (*************************************
  *                                   *
@@ -209,11 +214,7 @@ ToLiePolynomial[expr_] := expr;
 ToLiePolynomial[list : {PatternSequence[_Integer, {___Integer}] ...}] := 
 	Plus @@ ((First[#]*LieTerm @@ Last[#]) & /@ Partition[list, 2])
 
-(* Case 3: a string beginning with "     ". *)
-FromLieOutput[s_String] /; StringMatchQ[s, "     " ~~ (nwsp_ /; !StringMatchQ[nwsp, Whitespace]) ~~ ___] := 
-	StringTrim @ StringTake[s, {6, -1}];
-
-(* Case 4: a string. *)
+(* Case 3: a string. *)
 FromLieOutput[s_String] :=
 	s;
 
@@ -293,7 +294,7 @@ ToLieInput[expr_] :=
  *************************************)
 
 
-LieFunction[func_String, args___] := 
+CallLieFunction[func_String, args___] := 
 	FromLieOutput @ LieQuery[func <> "(" <> Riffle[ToLieInput /@ {args}, ","] <> ")"];
 
 
@@ -304,7 +305,7 @@ SetDefaultAlgebra[] :=
 	$DefaultAlgebra
 
 
-(* Helper function for setting short-hand Mathmetica symbols to LieFunction calls. *)
+(* Helper function for setting short-hand Mathmetica symbols to CallLieFunction calls. *)
 SetFunction[Rule[string_String, symbol_String]] :=
 	With[
 		{
@@ -317,13 +318,13 @@ SetFunction[Rule[string_String, symbol_String]] :=
 			Message[symbolName::shdw, symbolName, {Context[symbolName],"LieLink`"},"LieLink`"];
 		];
 		(* Make the definition. *)
-		functionName[args___] := LieFunction[lieName, args];
+		functionName[args___] := CallLieFunction[lieName, args];
 		(* Set the usage message. *)
 		functionName::usage = symbol <> " is the equivalent of the LiE function \"" <> lieName <> "\".";
 	];
 
 
-LookupLieFunction[string_String] := 
+LieFunction[string_String] := 
 	If[
 		string =!= (string /. LieFunctionTable),
 		Symbol["LieLink`" <> (string /. LieFunctionTable)],

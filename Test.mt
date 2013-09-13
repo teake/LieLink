@@ -13,7 +13,7 @@ Test[
 Test[
 	LieQuery["A2"]
 	,
-	"     A2"
+	"A2"
 	,
 	TestID->"Test-20130910-J7A3E3"
 ]
@@ -37,7 +37,7 @@ Test[
 Test[
 	LieQuery["2+2"]
 	,
-	"     4"
+	"4"
 	,
 	TestID->"Test-20130910-K4R9Y1"
 ]
@@ -45,7 +45,7 @@ Test[
 Test[
 	LieQuery["[1,2,3]"]
 	,
-	"     [1,2,3]"
+	"[1,2,3]"
 	,
 	TestID->"Test-20130910-I3M9P2"
 ]
@@ -53,7 +53,7 @@ Test[
 Test[
 	LieQuery["dim(E8)"]
 	,
-	"     248"
+	"248"
 	,
 	TestID->"Test-20130910-G8I2T7"
 ]
@@ -111,7 +111,7 @@ Test[
 ]
 
 Test[
-	FromLieOutput["     E8"]
+	FromLieOutput["E8"]
 	,
 	"E8"
 	,
@@ -207,7 +207,7 @@ Test[
 ]
 
 Test[
-	LieFunction["dim", "E8"]
+	CallLieFunction["dim", "E8"]
 	,
 	248
 	,
@@ -239,7 +239,7 @@ Test[
 ]
 
 Test[
-	LookupLieFunction["dim"]
+	LieFunction["dim"]
 	,
 	Dim
 	,
@@ -247,7 +247,7 @@ Test[
 ]
 
 Test[
-	LookupLieFunction["doesn't exist"]
+	LieFunction["doesn't exist"]
 	,
 	$Failed
 	,

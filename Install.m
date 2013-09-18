@@ -8,4 +8,4 @@ InstallPackage[
 	"https://github.com/teake/LieLink/releases/download/0.4.0/LieLink.0.4.0.zip", 
 	Directory -> FileNameJoin[{$UserBaseDirectory, "Applications"}], 
 	Print -> False
-];
+]

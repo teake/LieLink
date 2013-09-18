@@ -12,11 +12,13 @@ If[System`$VersionNumber < 7.,
 LieLink`$LieLinkVersion = Get["LieLink`VersionNumber`"];
 
 (* Print version info etc. *)
-Print["=================================================================="];
+Print["================================================================="];
 Print["Package LieLink` version ", LieLink`$LieLinkVersion[[1]],", " ,LieLink`$LieLinkVersion[[2]]];
 Print["CopyRight (C) 2013, Teake Nutma, under the General Public License."];
-Print["Based on LiE, by Arjeh M. Cohen, Marc van Leeuwen, and Bert Lisser."];
-Print["=================================================================="];
+Print["Based upon LiE version 2.2.2,"]; 
+Print["CopyRight (C) 1992-2002, Arjeh M. Cohen, Marc van Leeuwen, "];
+Print["and Bert Lisser, under the Lesser General Public License."];
+Print["================================================================="];
 
 (* Load the package. *)
 Get[ "LieLink`LieLink`"]

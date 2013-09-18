@@ -261,3 +261,15 @@ Test[
 	,
 	TestID->"Test-20130913-X9G0B3"
 ]
+
+Test[
+	Fold[
+		LieTensor[#1, #2, "A4"] &, 
+		LieTerm[1, 1, 1, 1], 
+		Table[LieTerm[1, 1, 1, 1], {3}]
+	]
+	,
+	TensorPower[4,LieTerm[1,1,1,1],"A4"]
+	,
+	TestID->"Test-20130918-E5T5X1"
+]

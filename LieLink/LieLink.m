@@ -171,9 +171,10 @@ LieQuery[query_String] :=
 		(* Check exe. *)
 		CheckLieExecutableAbort[];
 		(* Save the query to the in-file. *)
-		Put[ 
-			OutputForm @ AddDefaultAlgebraQuery @ query, 
-			$LieInFile
+		Export[
+			$LieInFile,
+			AddDefaultAlgebraQuery @ query, 
+			"Text"
 		];
 		(* Run LiE. *)
 		returncode = Run @ StringJoin[

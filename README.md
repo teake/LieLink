@@ -41,8 +41,8 @@ subdirectory to the same Mathematica applications directory.
 
 ### Compiling LiE ###
 
-LieLink needs a compiled version of LiE to run. It is bundled with LiE versions for 
-OS X, Windows, 32-bit Linux, and 64-bit Linux, all precompiled on x86 architecture. 
+LieLink needs a compiled version of LiE to run. It comes bundled with LiE versions for 
+OS X, Windows, 32-bit and 64-bit Linux, all precompiled on x86 architecture. 
 If none of these version work on your computer, you need to compile LiE yourself.
 
 Download the compile-only version of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, 

@@ -30,8 +30,6 @@ of this directory can be found by typing the command
 into Mathematica. Alternatively, you can checkout this repository and move the LieLink 
 subdirectory to the same Mathematica applications directory.
 
-### Compiling LiE ###
-
 LieLink relies on LiE for all the calculations, so it needs a compiled version of it. 
 If you already have the compiled GAP version installed on your computer, it suffices 
 to point LieLink to its location before loading the package:
@@ -39,15 +37,20 @@ to point LieLink to its location before loading the package:
     LieLink`$LieDirectory = "path/to/directoryofLiE";
     <<LieLink`
 
-If not, you need to compile the GAP version of LiE. Download the compile-only version
-of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, unzip it, and compile the 
-GAP version by running
+If not, you need to compile the GAP version of LiE. 
 
-    make
+### Compiling LiE ###
+
+Download the compile-only version of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, 
+unzip it, and compile the GAP version by running
+
+    make noreadline
     make Liegap.exe
     
 from the command line. Note that OS X users will first need to replace the makefile with 
-[this file](http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/Macfile).
+[this file](http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/Macfile). Compilation
+on Windows is best done with [MinGW](http://www.mingw.org/) in an 
+[MSYS](http://www.mingw.org/wiki/MSYS) shell. 
 
 After compilation, move the following files to the LiE subdirectory in the LieLink directory:
 

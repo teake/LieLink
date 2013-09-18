@@ -110,8 +110,15 @@ If[!ValueQ[$LieDirectory],
 	$LieDirectory = 
 		FileNameJoin @ Join [ 
 			Drop[FileNameSplit@FindFile["LieLink`"], -2],
-			{ "LiE" } 
+			{ "LiE", $OperatingSystem } 
 		];
+	If[ $OperatingSystem === "Unix",
+		$LieDirectory = $LieDirectory <>
+			If[ StringMatchQ[$Version, "*64-bit*"],
+				"64",
+				"32"
+			];
+	];
 ];
 
 If[!ValueQ[$LieExecutable],
@@ -178,8 +185,12 @@ LieQuery[query_String] :=
 		];
 		(* Run LiE. *)
 		returncode = Run @ StringJoin[
-			"cd " <> $LieDirectory <> ";",
-			"./" <> $LieExecutable <> " > " <> $LieOutFile <> " < " <> $LieInFile
+			"cd \"" <> $LieDirectory <> "\"",
+			If[$OperatingSystem === "Windows",
+				"&",
+				"; chmod u+x " <> $LieExecutable <> "; ./"
+			],
+			$LieExecutable <> " > \"" <> $LieOutFile <> "\" < \"" <> $LieInFile <> "\""
 		];
 		(* Check the return code. *)
 		If[ returncode =!= 0,

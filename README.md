@@ -19,7 +19,16 @@ Installation
 
 LieLink requires at least Mathematica 7.
 
-### Obtaining the package ###
+### Automatic installation ###
+
+LieLink can be installed automatically by entering the following command in 
+Mathematica:
+
+    Import["https://raw.github.com/teake/LieLink/master/Install.m"]
+
+If succesful, this returns the directory under which LieLink has been installed.
+
+### Manual installation ###
 
 Download the latest release https://github.com/teake/LieLink/releases, unzip it, 
 and move the LieLink directory to the Mathematica applications directory. The location 
@@ -28,18 +37,14 @@ of this directory can be found by typing the command
     FileNameJoin @ {$UserBaseDirectory, "Applications"}
 
 into Mathematica. Alternatively, you can checkout this repository and move the LieLink 
-subdirectory to the same Mathematica applications directory.
-
-LieLink relies on LiE for all the calculations, so it needs a compiled version of it. 
-If you already have the compiled GAP version installed on your computer, it suffices 
-to point LieLink to its location before loading the package:
-
-    LieLink`$LieDirectory = "path/to/directoryofLiE";
-    <<LieLink`
-
-If not, you need to compile the GAP version of LiE. 
+subdirectory to the same Mathematica applications directory. 
 
 ### Compiling LiE ###
+
+LieLink needs a compiled version of LiE to run. It is bundled with  
+LiE versions for OS X, Windows, 32-bit Linux, and 64-bit Linux, all precompiled
+on x86 architecture. If none of these version work on your computer, you need
+to compile LiE yourself.
 
 Download the compile-only version of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, 
 unzip it, and compile the GAP version by running
@@ -52,19 +57,12 @@ from the command line. Note that OS X users will first need to replace the makef
 on Windows is best done with [MinGW](http://www.mingw.org/) in an 
 [MSYS](http://www.mingw.org/wiki/MSYS) shell. 
 
-After compilation, move the following files to the LiE subdirectory in the LieLink directory:
+After compilation, you need to tell LieLink where the compiled version of
+LiE can be found. This can be done before loading the package as follows:
 
-    Liegap.exe
-    Lie.exe
-    LEARN.ind
-    INFO.ind
-    INFO.a
-    INFO.0
-    INFO.1
-    INFO.2
-    INFO.3
-    INFO.4
-    
+    LieLink`$LieDirectory = "path/to/directoryofcompiledLiE";
+    <<LieLink`
+        
 Running the package
 -------------------
 

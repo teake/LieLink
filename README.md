@@ -1,9 +1,10 @@
 LieLink
 =======
 
-LieLink is a Mathematica interface for LiE. LiE is a computer algebra package for 
-Lie group computations. LieLink makes it possible to call LiE functions directly 
-from Mathematica. Here is an example:
+LieLink is a Mathematica interface for [LiE](http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/),
+a computer algebra package for Lie group computations. LieLink makes it possible to call
+LiE functions directly from Mathematica. Here is an example that computes the tensor
+product of two fundamental representation of the Lie algebra *A*<sub>2</sub>:
 
     <<LieLink`
     
@@ -12,12 +13,11 @@ from Mathematica. Here is an example:
     LieTensor[{1, 0}, {1, 0}]
     (* => {0,1} + {2,0} *)
 
-For a list of all supported LiE functions, see the last section.
+For a list of all supported LiE functions, see the last section. LieLink requires at least Mathematica 7.
 
 Installation
 ------------
 
-LieLink requires at least Mathematica 7.
 
 ### Automatic installation ###
 
@@ -41,10 +41,9 @@ subdirectory to the same Mathematica applications directory.
 
 ### Compiling LiE ###
 
-LieLink needs a compiled version of LiE to run. It is bundled with  
-LiE versions for OS X, Windows, 32-bit Linux, and 64-bit Linux, all precompiled
-on x86 architecture. If none of these version work on your computer, you need
-to compile LiE yourself.
+LieLink needs a compiled version of LiE to run. It comes bundled with LiE versions for 
+OS X, Windows, 32-bit and 64-bit Linux, all precompiled on x86 architecture. 
+If none of these version work on your computer, you need to compile LiE yourself.
 
 Download the compile-only version of LiE from http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/, 
 unzip it, and compile the GAP version by running

@@ -73,15 +73,16 @@ LiE can be found. This can be done before loading the package as follows:
     <<LieLink`
 
 
-Running the package
--------------------
+Using the package
+-----------------
 
 Once installed, LieLink can be loaded in Mathematica by typing
 
     <<LieLink`
     
-All LiE functions have new Mathematica-like names (see the list in the last section). 
-For example, the function `tensor` is now called `LieTensor`:
+All LiE functions have new Mathematica-like names (see the list in the 
+[last section](#mathematica-names-of-lie-functions)). 
+For example, the LiE function `tensor` is called `LieTensor` in LieLink:
 
     LieTensor[{1, 1}, {1, 1}, "A2"]
     (* => {0, 0} + {0, 3} + 2 {1, 1} + {2, 2} + {3, 0} *)
@@ -89,8 +90,8 @@ For example, the function `tensor` is now called `LieTensor`:
 The Mathematica names of LiE functions can be looked up with the `LieFunction`
 command:
 
-    LieFunction["sym_tensor"]
-    (* => SymmetricTensorPower *)
+    LieFunction["tensor"]
+    (* => LieTensor *)
 
 Besides using the new Mathematica-like names of LiE functions, it is also possible
 to directly call LiE with a textual query:
@@ -98,8 +99,11 @@ to directly call LiE with a textual query:
     LieQuery["dim(A2)"]
     (* => "8" *)
 
-Unlinke the new short-hand functions like `LieTensor`, `LieQuery` doesn't parse its
+Unlike the new short-hand functions like `LieTensor`, `LieQuery` doesn't parse its
 output to Mathematica syntax but keeps it in plain-text.
+
+Groups are entered as strings in LieLink. For example, the equivalent of the LiE
+command `dim(A2)` is now `Dim["A2"]`. 
 
 LieLink also introduces a new Mathematica type called `LieTerm`, which is used for
 terms in Laurent polynomials. `LieTerm[1,2,3]` prints as `{1,2,3}` with red brackets,

@@ -5,7 +5,7 @@ Import["https://packageinstaller.googlecode.com/hg/PackageInstaller/PackageInsta
 
 (* Install LieLink. *)
 InstallPackage[
-	"https://github.com/teake/LieLink/releases/download/0.4.1/LieLink.0.4.1.zip", 
+	"https://github.com/teake/LieLink/releases/download/0.4.2/LieLink.0.4.2.zip", 
 	Directory -> FileNameJoin[{$UserBaseDirectory, "Applications"}], 
 	Print -> False
 ]

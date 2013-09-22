@@ -35,8 +35,6 @@ Mathematica:
 
     Import["https://raw.github.com/teake/LieLink/master/Install.m"]
 
-If succesful, this returns the directory under which LieLink has been installed.
-
 
 ### Manual installation ###
 

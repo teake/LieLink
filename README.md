@@ -2,8 +2,15 @@ LieLink
 =======
 
 LieLink is a Mathematica interface for [LiE](http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/),
-a computer algebra package for Lie group computations. LieLink makes it possible to call
-LiE functions directly from Mathematica. Here is an example that computes the tensor
+a computer package for Lie algebra computations. LieLink makes it possible to call
+LiE functions directly from Mathematica, enabling Mathematica to compute e.g.
+
+* Tensor products of representations,
+* Symmetric or alternating tensor powers of representations,
+* Branchings of representations to subalgebras,
+
+and much more. See the [LiE manual](http://wwwmathlabo.univ-poitiers.fr/~maavl/LiEman/manual.pdf)
+for all its capabilities. Here is an short LieLink example that computes the tensor
 product of two fundamental representation of the Lie algebra *A*<sub>2</sub>:
 
     <<LieLink`
@@ -13,7 +20,9 @@ product of two fundamental representation of the Lie algebra *A*<sub>2</sub>:
     LieTensor[{1, 0}, {1, 0}]
     (* => {0,1} + {2,0} *)
 
-For a list of all supported LiE functions, see the last section. LieLink requires at least Mathematica 7.
+For a list of all supported LiE functions, see the [last section](#mathematica-names-of-lie-functions).
+LieLink requires at least Mathematica 7.
+
 
 Installation
 ------------
@@ -28,6 +37,7 @@ Mathematica:
 
 If succesful, this returns the directory under which LieLink has been installed.
 
+
 ### Manual installation ###
 
 Download the latest release https://github.com/teake/LieLink/releases, unzip it, 
@@ -36,8 +46,8 @@ of this directory can be found by typing the command
 
     FileNameJoin @ {$UserBaseDirectory, "Applications"}
 
-into Mathematica. Alternatively, you can checkout this repository and move the LieLink 
-subdirectory to the same Mathematica applications directory. 
+into Mathematica. 
+
 
 ### Compiling LiE ###
 
@@ -61,16 +71,18 @@ LiE can be found. This can be done before loading the package as follows:
 
     LieLink`$LieDirectory = "path/to/directoryofcompiledLiE";
     <<LieLink`
-        
-Running the package
--------------------
+
+
+Using the package
+-----------------
 
 Once installed, LieLink can be loaded in Mathematica by typing
 
     <<LieLink`
     
-All LiE functions have new Mathematica-like names (see the list in the last section). 
-For example, the function `tensor` is now called `LieTensor`:
+All LiE functions have new Mathematica-like names (see the list in the 
+[last section](#mathematica-names-of-lie-functions)). 
+For example, the LiE function `tensor` is called `LieTensor` in LieLink:
 
     LieTensor[{1, 1}, {1, 1}, "A2"]
     (* => {0, 0} + {0, 3} + 2 {1, 1} + {2, 2} + {3, 0} *)
@@ -78,8 +90,8 @@ For example, the function `tensor` is now called `LieTensor`:
 The Mathematica names of LiE functions can be looked up with the `LieFunction`
 command:
 
-    LieFunction["sym_tensor"]
-    (* => SymmetricTensorPower *)
+    LieFunction["tensor"]
+    (* => LieTensor *)
 
 Besides using the new Mathematica-like names of LiE functions, it is also possible
 to directly call LiE with a textual query:
@@ -87,8 +99,11 @@ to directly call LiE with a textual query:
     LieQuery["dim(A2)"]
     (* => "8" *)
 
-Unlinke the new short-hand functions like `LieTensor`, `LieQuery` doesn't parse its
+Unlike the new short-hand functions like `LieTensor`, `LieQuery` doesn't parse its
 output to Mathematica syntax but keeps it in plain-text.
+
+Groups are entered as strings in LieLink. For example, the equivalent of the LiE
+command `dim(A2)` is now `Dim["A2"]`. 
 
 LieLink also introduces a new Mathematica type called `LieTerm`, which is used for
 terms in Laurent polynomials. `LieTerm[1,2,3]` prints as `{1,2,3}` with red brackets,
@@ -105,88 +120,46 @@ Mathematica names of Lie functions
 Below is a list of all new Mathematica-like names for LiE functions in LieLink.
 This list is stored in the Mathematica variable `LieFunctionTable`.
 
-    "Adams" 		-> "Adams",
-    "adjoint" 		-> "AdjointRepresentation",
-    "alt_dom" 		-> "AlternatingDominant",
-    "alt_tensor" 	-> "AlternatingTensorPower",
-    "alt_W_sum" 	-> "AlternatingWeylSum",
-    "block_mat" 	-> "BlockdiagonalMatrix",
-    "branch" 		-> "Branch",
-    "Bruhat_desc" 	-> "BruhatDescendant",
-    "Bruhat_leq" 	-> "BruhatLeq",
-    "canonical" 	-> "CanonicalWeylWord",
-	"Cartan"		-> "CartanMatrix",
-	"Cartan" 		-> "CartanProduct",
-    "Cartan_type" 	-> "CartanType",
-    "center" 		-> "GroupCenter",
-    "cent_roots" 	-> "CentralizingRoots",
-    "centr_type" 	-> "CentralizerType",
-    "class_ord" 	-> "ConjugacyClassOrder",
-    "closure" 		-> "Closure",
-    "collect" 		-> "InverseBranch",
-    "contragr" 		-> "Contragradient",
-    "decomp" 		-> "Decomposition",
-    "degree" 		-> "PolynomialDegree",
-    "Demazure" 		-> "Demazure",
-    "det_Cartan" 	-> "DetCartan",
-    "diagram"		-> "DynkinDiagram",
-    "dim" 			-> "Dim",
-    "dom_char" 		-> "DominantCharacter",
-    "dominant" 		-> "Dominant",
-    "dom_weights" 	-> "DominantWeights",
-    "exponents" 	-> "Exponents",
-    "filter_dom" 	-> "FilterDominant",
-    "from_part" 	-> "FromPartition",
-    "fundam" 		-> "FundamentalRoots",
-    "high_root" 	-> "HighestRoot",
-    "i_Cartan" 		-> "InverseCartan",
-    "inprod" 		-> "InnerProduct",
-    "KL_poly" 		-> "KazhdanLusztigPolynomial",
-    "Lie_code" 		-> "LieCode",
-    "Lie_group" 	-> "LieGroup",
-    "Lie_rank" 		-> "LieRank",
-    "long_word" 	-> "LongestWord",
-    "l_reduce" 		-> "LeftWeylReduce",
-    "lr_reduce" 	-> "LeftRightWeylReduce",
-    "LR_tensor" 	-> "LittlewoodRichardson",
-    "max_sub" 		-> "MaximalSubgroups",
-    "n_comp" 		-> "NumberOfSimpleComponents",
-    "next_part" 	-> "NextPartition",
-    "next_perm" 	-> "NextPermutation",
-    "next_tabl" 	-> "NextTableau",
-    "norm" 			-> "RootNorm",
-    "n_tabl" 		-> "NumberOfTableaux",
-    "n_vars" 		-> "NumberOfVariables",
-    "orbit" 		-> "GroupOrbit",
-    "plethysm" 		-> "Plethysm",
-    "pos_roots" 	-> "PositiveRoots",
-    "p_tensor" 		-> "TensorPower",
-    "print_tab"		-> "PrintTableau",
-    "reduce" 		-> "WeylReduce",
-    "reflection" 	-> "Reflection",
-    "res_mat" 		-> "RestrictionMatrix",
-    "row_index" 	-> "RowIndex",
-    "R_poly" 		-> "RPolynomial",
-    "r_reduce" 		-> "RightWeylReduce",
-    "RS" 			-> "RobinsonSchensted",
-    "shape" 		-> "TableauShape",
-    "sign_part" 	-> "PartitionSign",
-    "spectrum" 		-> "ToralSpectrum",
-    "support" 		-> "Support",
-    "sym_char" 		-> "SymmetricCharacter",
-    "sym_orbit" 	-> "SymmetricOrbit",
-    "sym_tensor" 	-> "SymmetricTensorPower",
-    "tableaux" 		-> "TableauxOfPartition",
-    "tensor" 		-> "LieTensor",
-    "to_part"	 	-> "ToPartition",
-    "trans_part" 	-> "TransposePartition",
-    "unique" 		-> "CanonicalMatrix",
-    "v_decomp" 		-> "VirtualDecomposition",
-    "W_action" 		-> "WeylAction",
-    "W_orbit" 		-> "WeylOrbit",
-    "W_orbit_graph"	-> "WeylOrbitGraph",
-    "W_orbit_size" 	-> "WeylOrbitSize",
-    "W_order" 		-> "WeylOrder",
-    "W_rt_action" 	-> "WeylRootAction",
-    "W_rt_orbit" 	-> "WeylRootOrbit",
-    "W_word" 		-> "WeylWord"
+    Adams       -> Adams,                     LR_tensor     -> LittlewoodRichardson,
+    adjoint     -> AdjointRepresentation,     max_sub       -> MaximalSubgroups,
+    alt_dom     -> AlternatingDominant,       n_comp        -> NumberOfSimpleComponents,
+    alt_tensor  -> AlternatingTensorPower,    next_part     -> NextPartition,
+    alt_W_sum   -> AlternatingWeylSum,        next_perm     -> NextPermutation,
+    block_mat   -> BlockdiagonalMatrix,       next_tabl     -> NextTableau,
+    branch      -> Branch,                    norm          -> RootNorm,
+    Bruhat_desc -> BruhatDescendant,          n_tabl        -> NumberOfTableaux,
+    Bruhat_leq  -> BruhatLeq,                 n_vars        -> NumberOfVariables,
+    canonical   -> CanonicalWeylWord,         orbit         -> GroupOrbit,
+    Cartan      -> CartanMatrix,              plethysm      -> Plethysm,
+    Cartan      -> CartanProduct,             pos_roots     -> PositiveRoots,
+    Cartan_type -> CartanType,                p_tensor      -> TensorPower,
+    center      -> GroupCenter,               print_tab     -> PrintTableau,
+    cent_roots  -> CentralizingRoots,         reduce        -> WeylReduce,
+    centr_type  -> CentralizerType,           reflection    -> Reflection,
+    class_ord   -> ConjugacyClassOrder,       res_mat       -> RestrictionMatrix,
+    closure     -> Closure,                   row_index     -> RowIndex,
+    collect     -> InverseBranch,             R_poly        -> RPolynomial,
+    contragr    -> Contragradient,            r_reduce      -> RightWeylReduce,
+    decomp      -> Decomposition,             RS            -> RobinsonSchensted,
+    degree      -> PolynomialDegree,          shape         -> TableauShape,
+    Demazure    -> Demazure,                  sign_part     -> PartitionSign,
+    det_Cartan  -> DetCartan,                 spectrum      -> ToralSpectrum,
+    diagram     -> DynkinDiagram,             support       -> Support,
+    dim         -> Dim,                       sym_char      -> SymmetricCharacter,
+    dom_char    -> DominantCharacter,         sym_orbit     -> SymmetricOrbit,
+    dominant    -> Dominant,                  sym_tensor    -> SymmetricTensorPower,
+    dom_weights -> DominantWeights,           tableaux      -> TableauxOfPartition,
+    exponents   -> Exponents,                 tensor        -> LieTensor,
+    filter_dom  -> FilterDominant,            to_part       -> ToPartition,
+    from_part   -> FromPartition,             trans_part    -> TransposePartition,
+    fundam      -> FundamentalRoots,          unique        -> CanonicalMatrix,
+    high_root   -> HighestRoot,               v_decomp      -> VirtualDecomposition,
+    i_Cartan    -> InverseCartan,             W_action      -> WeylAction,
+    inprod      -> InnerProduct,              W_orbit       -> WeylOrbit,
+    KL_poly     -> KazhdanLusztigPolynomial,  W_orbit_graph -> WeylOrbitGraph,
+    Lie_code    -> LieCode,                   W_orbit_size  -> WeylOrbitSize,
+    Lie_group   -> LieGroup,                  W_order       -> WeylOrder,
+    Lie_rank    -> LieRank,                   W_rt_action   -> WeylRootAction,
+    long_word   -> LongestWord,               W_rt_orbit    -> WeylRootOrbit,
+    l_reduce    -> LeftWeylReduce,            W_word        -> WeylWord
+    lr_reduce   -> LeftRightWeylReduce,

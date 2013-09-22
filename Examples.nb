@@ -7,26 +7,31 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"============================================================\
-======\"\>"], "Print"],
+=====\"\>"], "Print"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"Package LieLink` version \"\>", 
-   "\[InvisibleSpace]", "\<\"0.2.0.3\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
+   "\[InvisibleSpace]", "\<\"0.4.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"2013", ",", "9", ",", "12"}], "}"}]}],
-  SequenceForm["Package LieLink` version ", "0.2.0.3", ", ", {2013, 9, 12}],
+    RowBox[{"2013", ",", "9", ",", "19"}], "}"}]}],
+  SequenceForm["Package LieLink` version ", "0.4.1", ", ", {2013, 9, 19}],
   Editable->False]], "Print"],
 
 Cell[BoxData["\<\"CopyRight (C) 2013, Teake Nutma, under the General Public \
 License.\"\>"], "Print"],
 
-Cell[BoxData["\<\"Based on LiE, by Arjeh M. Cohen, Marc van Leeuwen, and Bert \
-Lisser.\"\>"], "Print"],
+Cell[BoxData["\<\"Based upon LiE version 2.2.2,\"\>"], "Print"],
+
+Cell[BoxData["\<\"CopyRight (C) 1992-2002, Arjeh M. Cohen, Marc van Leeuwen, \
+\"\>"], "Print"],
+
+Cell[BoxData["\<\"and Bert Lisser, under the Lesser General Public License.\"\
+\>"], "Print"],
 
 Cell[BoxData["\<\"============================================================\
-======\"\>"], "Print"]
+=====\"\>"], "Print"]
 }, Open  ]]
 }, Open  ]],
 
@@ -401,9 +406,14 @@ Cell[BoxData[
  RowBox[{"?", "Dim"}]], "Input"],
 
 Cell[BoxData[
- StyleBox["\<\"Dim is the equivalent of the LiE function \\\"dim\\\".\"\>", 
-  "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588057515-7624499"]
+ StyleBox["\<\"Dim is the LieLink equivalent of the LiE function \\\"dim\\\", \
+whose description is as follows:\\n\\ndim(grp)-> int\\ndim(g).   Returns the \
+dimension of the Lie group g; equals dim(adjoint(g),g).\\n\\ndim(vec,grp)-> \
+bin\\ndim (lambda,g) [lambda: weight].   Returns the dimension of the \
+representation V_lambda.\\n\\ndim(pol,grp)-> bin\\ndim(p,g) [p: \
+decomposition].   Returns the dimension of the g-module with decomposition \
+polynomial p.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588828075-1734088"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -499,9 +509,16 @@ Cell[BoxData[
  RowBox[{"?", "SymmetricTensorPower"}]], "Input"],
 
 Cell[BoxData[
- StyleBox["\<\"SymmetricTensorPower is the equivalent of the LiE function \
-\\\"sym_tensor\\\".\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588057522-7624499"]
+ StyleBox["\<\"SymmetricTensorPower is the LieLink equivalent of the LiE \
+function \\\"sym_tensor\\\", whose description is as \
+follows:\\n\\nsym_tensor(int,vec,grp)-> pol\\nsym_tensor(n,lambda,g) [lambda: \
+weight, result: decomposition]. (symmetric tensor power)  Returns the \
+decomposition polynomial of the n-th symmetric tensor power of V_lambda.  See \
+also alt_tensor and plethysm.\\n\\nsym_tensor(int,pol,grp)-> \
+pol\\nsym_tensor(n,p,g) [p,result: decomposition].   This is similar to \
+sym_tensor(n,,g), but with the irreducible module V_lambda replaced by the \
+module with decomposition polynomial p.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588828072-1734088"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -600,9 +617,24 @@ Cell[BoxData[
  RowBox[{"?", "CartanMatrix"}]], "Input"],
 
 Cell[BoxData[
- StyleBox["\<\"CartanMatrix is the equivalent of the LiE function \
-\\\"Cartan\\\".\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588067650-4819655"]
+ StyleBox["\<\"CartanMatrix is the LieLink equivalent of the LiE function \
+\\\"Cartan\\\", whose description is as follows:\\n\\nCartan(vec,vec,grp)-> \
+int\\nCartan(alpha,beta,g) [alpha,beta: root].   Returns the `Cartan product' \
+<alpha,beta>, i.e., the integral value 2(alpha,beta)=(beta,beta), where beta \
+must be a root, and alpha is any root vector. [This is is not an inner \
+product because the function is not linear in beta. The function is linear in \
+alpha however. See also inprod and norm.\\n\\nCartan(grp)-> mat\\nCartan(g) \
+[result: lin(root; weight)].   Returns the Cartan matrix of g, which is the \
+transformation matrix from the root lattice to the weight lattice, using the \
+bases of fundamental roots and fundamental weights respectively. Hence the \
+i-th row of the Cartan matrix equals the i-th fundamental root, expressed as \
+weight vector. The labeling of the fundamental roots is as indicated by \
+diagram(g). When g is semisimple, the (i,j)-entry of the Cartan matrix is \
+<alpha_i,alpha_j>. If g contains a central torus, so that the semisimple rank \
+s of g is differs from the Lie rank r, then the Cartan matrix is not square, \
+as it is an s x r matrix, but all entries beyond column s are zero.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588828059-1734088"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -611,9 +643,24 @@ Cell[BoxData[
  RowBox[{"?", "CartanProduct"}]], "Input"],
 
 Cell[BoxData[
- StyleBox["\<\"CartanProduct is the equivalent of the LiE function \\\"Cartan\
-\\\".\"\>", "MSG"]], "Print", "PrintUsage",
- CellTags->"Info3588067655-4819655"]
+ StyleBox["\<\"CartanProduct is the LieLink equivalent of the LiE function \\\
+\"Cartan\\\", whose description is as follows:\\n\\nCartan(vec,vec,grp)-> int\
+\\nCartan(alpha,beta,g) [alpha,beta: root].   Returns the `Cartan product' \
+<alpha,beta>, i.e., the integral value 2(alpha,beta)=(beta,beta), where beta \
+must be a root, and alpha is any root vector. [This is is not an inner \
+product because the function is not linear in beta. The function is linear in \
+alpha however. See also inprod and norm.\\n\\nCartan(grp)-> mat\\nCartan(g) \
+[result: lin(root; weight)].   Returns the Cartan matrix of g, which is the \
+transformation matrix from the root lattice to the weight lattice, using the \
+bases of fundamental roots and fundamental weights respectively. Hence the \
+i-th row of the Cartan matrix equals the i-th fundamental root, expressed as \
+weight vector. The labeling of the fundamental roots is as indicated by \
+diagram(g). When g is semisimple, the (i,j)-entry of the Cartan matrix is \
+<alpha_i,alpha_j>. If g contains a central torus, so that the semisimple rank \
+s of g is differs from the Lie rank r, then the Cartan matrix is not square, \
+as it is an s x r matrix, but all entries beyond column s are zero.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellTags->"Info3588828066-1734088"]
 }, Open  ]],
 
 Cell[CellGroupData[{

@@ -97,7 +97,7 @@ InstallDialog[directory_String] :=
 					"WARNING: this directory is not a member of $Path.\n",
 					{}
 				],
-				"Any existing older versions will be backed up.\n",
+				"Any existing versions will be backed up.\n",
 				"\nDo you want to continue?"
 			}, 
 		{ "OK" -> "OK", "Change directory" -> "ChangeDir", "Cancel" -> "Cancel" },

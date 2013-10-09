@@ -2,35 +2,7 @@
 
 (* LieLink: a Mathematica interface for LiE *)
 
-(* https://github.com/teake/LieLink *)
-
-(*************************************
- *                                   *
- *          Introduction             *
- *                                   *
- *************************************)
- 
-(*
-
-	LieLink roughly works as follows:
-	
-	1. Convert input query to LiE syntax.
-	2. Write out a temporary file with the converted query to the filesystem.
-	3. Run LiE on this file, and have LiE output its results to another
-	   temporary file.
-	4. Read in the second temporary file.
-	5. Convert the result to Mathematica syntax.
-	
-	This workflow allows us to use an unmodified version of LiE (to be precise,
-	the GAP-build of LiE, which can be build with "make Liegap.exe").
-	
-	A better approach would be to enable MathLink communication between LiE
-	and Mathematica. But this would require significantly more work than this
-	simple wrapper package.
-
-*)
-
-BeginPackage["LieLink`"]
+(* Core file. *) 
 
 
 (*************************************
@@ -555,6 +527,4 @@ SetFunction /@ LieFunctionTable;
 
 
 End[]
-
-EndPackage[]
 

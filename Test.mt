@@ -273,3 +273,22 @@ Test[
 	,
 	TestID->"Test-20130918-E5T5X1"
 ]
+
+Test[
+	WeylOrbit[{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0}, "A13"].RestrictionMatrix["D7","A13"] == 
+	WeylOrbit[{1, 0, 0, 0, 0, 0,0}, "D7"]
+	,
+	True
+	,
+	TestID->"Test-20131009-H1I1T3"
+]
+
+Test[
+	WeylOrbit[{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, "A14"].RestrictionMatrix["B7","A14"] ==
+	Insert[WeylOrbit[{1, 0, 0, 0, 0, 0, 0}, "B7"], {0, 0, 0, 0, 0, 0, 0}, 8]
+	,
+	True
+	,
+	TestID->"Test-20131009-F2F5Y7"
+]
+

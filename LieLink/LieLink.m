@@ -26,6 +26,12 @@ $LieOutFile::usage =
 	"$LieOutFile stores the location of the temporary file used for retrieving \
 results from LiE.";
 
+$MaxNodes::usage =
+	"$MaxNodes corresponds to the LiE parameter 'maxnodes'.";
+
+$MaxObjects::usage =
+	"$MaxObjects corresponds to the LiE parameter 'maxobjects'.";
+
 LieQuery::exe = 
 	"The external LiE executable cannot be found. Please check if \
 $LieDirectory and $LieExecutable are correct.";
@@ -106,6 +112,9 @@ If[ !DirectoryQ @ tempLieLinkDir,
 $LieInFile 	= FileNameJoin @ { tempLieLinkDir, "LieLinkInFile" }
 $LieOutFile = FileNameJoin @ { tempLieLinkDir, "LieLinkOutFile" }
 
+$MaxNodes 	= 9999;
+$MaxObjects = 99999;
+
 
 (*************************************
  *                                   *
@@ -136,13 +145,21 @@ If[!ValueQ[$DefaultAlgebra],
 	$DefaultAlgebra = None
 ];
 
-(* Gives part of wrapped Lie query if the standard algebr is set. *)
-AddDefaultAlgebraQuery[string_] := 
+(* Gives part of wrapped Lie query if the standard algebra is set. *)
+AddDefaultAlgebraQuery[query_String] := 
 	If[
 		$DefaultAlgebra =!= None,
 		"setdefault(" <> $DefaultAlgebra <> ")\n",
 		""
-	] <> string;
+	] <> query;
+
+(* Adds the system parameters to query. *)
+AddSystemParameters[query_String] :=
+	StringJoin[
+		"maxnodes ", 	ToString@$MaxNodes, 	"\n",
+		"maxobjects ", 	ToString@$MaxObjects, 	"\n",
+		query
+	];
 
 (* Main function for querying LiE. *)
 LieQuery[query_String] := 
@@ -152,7 +169,7 @@ LieQuery[query_String] :=
 		(* Save the query to the in-file. *)
 		Export[
 			$LieInFile,
-			AddDefaultAlgebraQuery @ query, 
+			AddSystemParameters @ AddDefaultAlgebraQuery @ query, 
 			"Text"
 		];
 		(* Run LiE. *)
@@ -170,7 +187,7 @@ LieQuery[query_String] :=
 			Abort[];
 		];
 		(* Fetch result from the out-file. *)
-		TrimLieResult @ CheckLieResult @ Import[$LieOutFile, "Text"]
+		CheckLieResult @ TrimLieResult @ Import[$LieOutFile, "Text"]
 	];
 
 (* Issue a warning if the LiE result is not of the expected form. *)
@@ -179,10 +196,13 @@ CheckLieResult[result_] /; StringMatchQ[result,"(" ~~ ___ ~~ "of file stdin)"] :
 CheckLieResult[result_String] :=
 	result;
 
-(* Trims the output of LiE to the relevant string. *)
-TrimLieResult[result_String] /; StringMatchQ[result, "     " ~~ (nwsp_ /; !StringMatchQ[nwsp, Whitespace]) ~~ ___] := 
-	StringTrim @ StringTake[result, {6, -1}];
+(* Trim the first line, which is "New tree space with maximum number of nodes: XXXX\n". *)
 TrimLieResult[result_String] :=
+	TrimLieResult1@StringTake[result, {First@First@StringPosition[result, "\n", 1]+1, -1}];
+(* Trim the rest of the whitespace. *)
+TrimLieResult1[result_String] /; StringMatchQ[result, "     " ~~ (nwsp_ /; !StringMatchQ[nwsp, Whitespace]) ~~ ___] := 
+	StringTrim @ StringTake[result, {6, -1}];
+TrimLieResult1[result_String] :=
 	StringTrim[result, "\n"];
 
 (*************************************

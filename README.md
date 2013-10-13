@@ -111,6 +111,13 @@ as input:
     SymmetricTensorPower[2, LieTerm[1,1], "A2"]
     (* => LieTerm[0, 0] + LieTerm[1, 1] + LieTerm[2, 2] *)
 
+Currently LieLink supports two system parameters of LiE, namely `maxnodes` and `maxobjects`.
+They can be set by changing the Mathematica variables `$MaxNodes` and `$MaxObjects` 
+respectively, which should always be integers. Their default values are
+
+    $MaxNodes   = 9999;
+    $MaxObjects = 99999;
+
 
 Mathematica names of Lie functions
 ----------------------------------

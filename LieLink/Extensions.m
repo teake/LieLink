@@ -37,7 +37,7 @@ restrictionMatrixList =
 		{
 			"B", 
 			"A", 
-			(2 #1 === #2 && #2 > 8) &, 
+			(2 #1 === #2 && #2 > 5) &, 
 			Table[
 				KroneckerDelta[i, j] + KroneckerDelta[i, 2 # + 1 - j] + 
 				KroneckerDelta[j, #] KroneckerDelta[i, #] + 

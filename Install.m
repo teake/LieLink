@@ -20,7 +20,7 @@ Begin["`Private`"]
  *                                   *
  *************************************)
 
-installVersion = "0.4.2";
+installVersion = "0.4.3";
 zipURL = 
 	StringJoin[
 		"https://github.com/teake/LieLink/releases/download/",
